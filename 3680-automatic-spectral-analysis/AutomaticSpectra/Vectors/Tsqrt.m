@@ -1,0 +1,1 @@
+function r = Tsqrt(x)%function r = Tsqrt(x)%%The same as CHOL, only%R*R' = X;%instead of%R'*R = X.%%See also CHOL.r = chol(x)';

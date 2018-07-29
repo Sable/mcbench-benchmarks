@@ -1,0 +1,1 @@
+a=input('Introduceti valoarea lui a:')

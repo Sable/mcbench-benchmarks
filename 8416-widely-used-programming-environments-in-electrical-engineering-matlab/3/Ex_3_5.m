@@ -1,0 +1,5 @@
+A=magic(4)
+sum(A)
+sum(A')
+sum(diag(A))
+sum(diag(fliplr(A)))

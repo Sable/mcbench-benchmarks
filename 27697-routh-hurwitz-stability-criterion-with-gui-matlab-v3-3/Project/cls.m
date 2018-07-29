@@ -1,0 +1,9 @@
+set(handles.factor_text,'String','');
+set(handles.table_ras,'String','');
+set(handles.arjw,'String','');
+set(handles.alhp,'String','');
+set(handles.ajw,'String','');
+set(handles.arhp,'String','');
+set(handles.ac,'String','');
+set(handles.arc,'String','');
+set(handles.result,'String','');

@@ -1,0 +1,14 @@
+s1=user1chp();
+s2=user3chp();
+s3=user5chp();
+s4=user7chp();
+s5=user10chp();
+s6=user12chp();
+u2=[s1,s2,s3,s4,s5,s6];
+v2=[1,3,5,7,10,12];
+plot(u2,v2,'g-*');
+grid on;
+legend('chip based configuration');
+title('Simulation for No of users vs BER in  CHIP BASED CONFIGURATION ');
+ xlabel('NUMBER USERS');
+ ylabel('BER');

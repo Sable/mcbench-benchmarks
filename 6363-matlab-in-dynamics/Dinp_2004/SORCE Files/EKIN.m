@@ -1,0 +1,303 @@
+                    function ekin
+% ***************************************************************
+%                   P r o g r a m   EKIN
+% ***************************************************************
+%
+% PURPOSE:
+%   Derive differential equation of motion of a mechanical
+%   system with one degree of freedom by means of the theo-
+%   rem of Kinetic Energy     dEk/dt = N(t,q,qt)
+%   Resolve the equation numerically and plots the graphics
+%   of the coordinate, velocity and phase plane.
+%   If possible, the program could solve the problem analytically.
+%
+% INPUT DATA:
+%   Ek   - expression of the kinetic energy Ek = Ek(q,qt);
+%   N    - power of the forces and moments N = N(t,q,qt);
+%   q0   - initial value of the coordinate;
+%   qt0  - initial value of the velocity;
+%   Tend - upper bound of the integration;
+%   eps  - precision of the calculations;
+%   np   - number of parameters .
+%   P{1}, P{2}, ..., P{np} - names of the parameters (array of cells);
+%
+%  NOTES:
+%   1. The coordinate is designed by the symbol 'q' and velocity by 'qt';
+%   2. The physical names of the parameters are assigned to the
+%      cells of the array P like this: P{1}='m', P{2}='c',...;
+%   3. For analytical solution the values of Tend, eps, np and P are not
+%      needed.
+%   4. Initial values q0, qt0 must to be entered as strings, even though
+%      they represent numbers!
+%   5. All the data can be input from file or in interactive mode.
+% 
+%  EXAMPLE of DATA FILE:
+%   % Data for problem ...
+%     Ek   = '1/2*a*qt^2';
+%     N    = '-(k*qt + 9.81*sin(q))*qt';
+%     q0   = 'q0';  ( or q0  = '0.12';)
+%     qt0  = 'qt0'; ( or qt0 = '7.5';)
+%     Tend = 20;
+%     eps  = 1.e-8;
+%     np   = 2;
+%     P{1} = 'a';
+%     P{2} = 'k';
+
+% ---------------------------------------------------------
+%                DATA INPUT OF THE PROBLEM
+% =========================================================
+
+ clear
+ disp(' ');
+ disp(' How will you input the data ?    ');
+ disp('     1. From a data file;         ');
+ disp('     2. In interactive mode.      ');
+ ans = input(' Number of Your choice : '  );
+ flag = 0;
+ if ans == 1
+    while 1
+       disp(' ');
+       indat = input(' Input the name of the data file :', 's');
+       if exist([cd,'\',indat]) % Search only in current directory
+          eval(indat);
+          flag = 1; break  % Successful
+        else               % Unsuccessful
+          disp(' ');
+          disp([' File ',indat,' not exist!'])
+          disp(' You have to:')
+          disp(' 1. Enter another DATA file name, or')
+          disp(' 2. Input the DATA interactively !')
+          ans2 = input(' Your choice, please: ');
+          if ans2 == 2, break , end
+       end
+    end
+ end
+if flag == 0  
+    %Input of the data in-line mode
+    Ek   = input(' Expression of the kinetic energy Ek : ','s');
+    N    = input(' Power of the forces and moments N : ','s'  );
+    q0   = input(' Initial value of the coordinate q0 : '     );
+    qt0  = input(' Initial value of the velocity qt0 : '      );
+    Tend = input(' Upper bound of the integration Tend : '    );
+    eps  = input(' Precision of the calculations eps : '      );
+    np   = input(' Number of parameters  np : '               );
+    % Asigning names of the parameters
+    if np > 0
+       disp(' ');
+       disp(' Enter names of the parameters:')
+       for i = 1:np
+           ii = num2str(i);
+           P{i} = input([' Name of parameter P',ii,': '],'s');
+       end
+    end 
+ end
+ 
+% ---------------------------------------------------------
+%             Differential Equation of Motion
+% =========================================================
+
+           syms q qt qtt Dq D2q
+           dEkdt = diff(Ek,q)*qt + diff(Ek,qt)*qtt;
+           deq = (dEkdt - N)/qt;
+           deq = subs(deq,{qt,qtt},{Dq,D2q});
+           deq = simplify(deq)
+
+% ---------------------------------------------------------
+%                  ANALYTICAL SOLUTION
+% =========================================================
+
+ disp(' ');
+ ans = input(' Would you like analytical solution? (Y/N): ','s');
+ if ans =='Y' | ans == 'y'
+    if ~isstr(q0) , q0  = num2str(q0) ; end % Repairing user
+    if ~isstr(qt0), qt0 = num2str(qt0); end % input errors!   
+    inicond = ['q(0)=',q0,',Dq(0)=',qt0];
+    q = dsolve(char(deq), inicond, 't');
+    if ~isempty(q)
+        disp(' ');
+        disp('   Low of Motion   ');
+        disp(' ***************** ');
+        disp(' '); 
+        disp('q = '); pretty(q)
+        disp(' ');
+        fname = input(' Name of file to write solution: ','s');
+        save(fname, 'q');
+    end
+    disp(' ');
+    ans = input(' Would you like numerical solution? (Y/N): ','s');
+    if ans == 'N' | ans == 'n', return, end 
+    q = 'q'; % Clear analitical solution from q !      
+ end
+
+% ---------------------------------------------------------
+%                  NUMERICAL SOLUTION
+% ========================================================= 
+
+% Input the name of the file-function
+disp(' ');
+fname = input(' Name of the File-function to be generated: ','s');
+flag1 = 'Y';
+if exist([cd,'\',fname]) % Search only in curent directory!
+    disp(' ');
+    disp([' A file-function with name ',fname,' already exist !'])
+    flag1 = input(' Overwrite it ? (Y/N): ', 's');
+end
+
+% ---------------------------------------------------------
+%              GENERATING THE FILE-FUNCTION
+% ---------------------------------------------------------
+
+if ( flag1 == 'Y' | flag1 == 'y' )
+   qtt = solve(deq,'D2q');
+   qtt = subs(qtt,{q,Dq},{'y(1)','y(2)'});
+% Opening the file to write file-function
+   [Fid,mes] = fopen([fname,'.m'],'wt');
+% Generating the string with physical parameters: m, c ...
+   strpar = '';
+   for j = 1:np
+      strpar = [strpar,',',P{j}];
+   end
+   disp(' ');
+   titl = input(' Denomination of the Problem: ','s');
+%       Writing the headline of the File-function
+   fprintf(Fid,['function yt = ',fname,'(t,y',strpar,')\n']);
+   fprintf(Fid,['%% ',titl]);
+%       Writing the first derivatives
+   fprintf(Fid,'\n%% The first derivatives\n');
+   fprintf(Fid, '  yt(1) = y(2); \n');
+   fprintf(Fid,['  yt(2) = ',char(qtt),'; \n']);
+   fprintf(Fid,'  yt = yt''; \n');
+   fprintf(Fid,['%% *** End of File-function ',fname,' ***']);
+   fclose(Fid);
+   edit(fname)
+end
+
+% ---------------------------------------------------------
+%        INTEGRATION AND VISUALIZATION OF THE REZULTS
+% ---------------------------------------------------------
+
+flag2 = 0;
+% Initial entering values of the parameters and generating
+% the string with parameters 'P{1}, P{2}, ..., P{np}' to be
+% passed to the File-function as actual arguments 
+if np > 0
+   PP = P; % Saving the physical names of the parameters in PP 
+   parameters = ' ';
+   disp(' ');
+   disp(' Input the numerical values of the parameters: ')
+   for i = 1:np
+       i = num2str(i);
+       eval(['P{',i,'}=input([''   '',P{',i,'},'' = '']);']);
+       parameters = [parameters,',P{',i,'}'];
+   end 
+ else
+   parameters = [];
+end
+% Check-up type of q0 and qt0 and correct
+% it if needed
+if ischar(q0)
+    q0 = str2num(q0);
+    if isempty(q0), q0 = input(' q0 = '); end
+end
+if ischar(qt0)
+    qt0 = str2num(qt0);
+    if isempty(qt0), qt0 = input(' qt0 = '); end
+end
+while 1
+    if flag2 == 1
+        disp(' ');
+        eps  = input(' Precision of the computations eps: ');
+        Tend = input(' Upper bound of the integration Tend: ');
+        q0   = input(' Initial coordinate q0: ');
+        qt0  = input(' Initial velocity qt0: ');
+        if np > 0
+          P = PP; % Restoring the names of the parameters !
+          disp(' ');
+          disp(' Input the numerical values of the parameters: ')
+          for i = 1:np
+              i = num2str(i);
+              eval(['P{',i,'}=input([''   '',P{',i,'},'' = '']);']);
+          end 
+        end
+    end
+    y0 = [q0 qt0]; % initial conditions
+    options = odeset('AbsTol',eps,'RelTol',100*eps);
+    % Choosing of the Solver
+    disp('                                        ');
+    disp('      Choose the proper Solver:         ');
+    disp('  -------------------------------       ');
+    disp(' A. Non stiff differential equations    ');
+    disp('   1. ode45   - middle precision;       ');
+    disp('   2. ode23   - low precision;          ');
+    disp('   3. ode113  - from low to upper.      ');
+    disp('                                        ');
+    disp(' B. Stiff differential equations        ');
+    disp('   1. ode15s  - from low to upper;      ');
+    disp('   2. ode23s  - low precision;          ');
+    disp('   3. ode23t  - middle precision;       ');
+    disp('   4. ode23tb - low precision.          ');
+    disp('                                        ');
+    solver = input(' The name of the Solver: ','s');
+   
+    % Integration of the Differential Equations
+        
+    eval(['[t,y] = feval(solver,eval([''@'',fname]),',...
+                  '[0 Tend],y0,options',parameters,');']);
+    % Plotting graphs
+    tmin  = min(t); 
+    tmax  = max(t);
+    y1min = min(y(:,1)); 
+    y1max = max(y(:,1));
+    y2min = min(y(:,2)); 
+    y2max = max(y(:,2));
+    dy1   = y1max - y1min;
+    dy2   = y2max - y2min;
+    xmin  = y1min - 0.1*dy1;
+    xmax  = y1max + 0.1*dy1;
+    ymin  = y2min - 0.1*dy2;
+    ymax  = y2max + 0.1*dy2;
+    % Coordinate q = q(t)
+    figure % 1
+    comet(t,y(:,1))
+    plot(t,y(:,1),[tmin tmax],[0 0],'k'), grid on
+    axis([tmin, tmax, xmin, xmax]);
+    set(gca,'FontName','Arial Cyr','FontSize',12);
+    title('Low of motion {\itq} = {\itq}({\itt})')
+    xlabel('{\itt}'); ylabel('{\itq}'); pause
+    % Velocity qt = qt(t)
+    figure % 2
+    comet(t,y(:,2))
+    plot(t,y(:,2),[tmin tmax],[0 0],'k'), grid on
+    axis([tmin, tmax, ymin, ymax]);
+    set(gca,'FontName','Arial','FontSize',12);
+    title('Velocity {\it qt} = {\it qt}({\itt})')
+    xlabel('{\itt}'); ylabel('{\it qt}'); pause
+    % Coordinate and Velocity
+    figure % 3
+    subplot(2,1,1), plot(t,y(:,1),[tmin tmax],[0 0],'k')
+    grid on, axis([tmin, tmax, xmin, xmax]);
+    set(gca,'FontName','Arial','FontSize',12);
+    title('Low of motion {\itq} = {\itq}({\itt})')
+    subplot(2,1,2), plot(t,y(:,2),[tmin tmax],[0 0],'k')
+    grid on, axis([tmin, tmax, ymin, ymax]);
+    set(gca,'FontName','Arial','FontSize',12);
+    title('Velocity {\it qt} = {\it qt}({\itt})')
+    pause
+    % Phase Plane
+    figure % 4
+    subplot(1,1,1)
+    comet(y(:,1),y(:,2))
+    plot(y(:,1),y(:,2), [xmin,xmax],[0 0],'k',...
+                  [0 0],[ymin,ymax],'k'), grid on
+    axis([xmin, xmax, ymin, ymax]);         
+    set(gca,'FontName','Arial Cyr','FontSize',12);
+    title(' Phase Plane {\it qt} = {\it qt}({\itq})')
+    xlabel('{\itq}'), ylabel('{\it qt}'), pause
+    flag2 = 1;
+    close all
+    disp(' ');
+    ans = input(' Would you like to continue? (Y/N): ','s');
+    if ans == 'n' | ans == 'N', break, end
+end
+
+%  **************** End of Program EKIN ******************

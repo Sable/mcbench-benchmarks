@@ -1,0 +1,3 @@
+function a=SimMechanics1Event(x)
+a=[x.states(1,1); x.states(2,1);...
+    x.states(1,end); x.states(2,end)];

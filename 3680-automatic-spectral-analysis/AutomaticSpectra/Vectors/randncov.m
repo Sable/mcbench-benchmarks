@@ -1,0 +1,1 @@
+function x = randncov(cov)%RANDNCOV A realization x of normally distributed vector X with%	covariancematrix COV:%  x = randncov(cov)%%	Uses randn%%	See also RANDN.ch = Tsqrt(cov);dim = size(ch,1);z = randn(dim,1);x = ch*z;

@@ -1,0 +1,1 @@
+degradation_function(j)=(B(1)+b(1))./(1+exp(-(t(j)-B(2))/B(3)));

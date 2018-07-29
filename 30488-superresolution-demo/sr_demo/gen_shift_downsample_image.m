@@ -1,0 +1,32 @@
+function imout=gen_shift_downsample_image(image,ds,sh)
+
+image=image(1:floor(size(image,1)/ds)*ds,1:floor(size(image,2)/ds)*ds);
+
+% if sh(1)>0 % pad above
+%     image=[repmat(image(1,:),[sh(1),1]); image];
+%     image(size(image,1)-sh(1)+1:size(image,1),:)=[];
+% elseif sh(1)<0 % pad below
+%     image=[image; repmat(image(size(image,1),:),[-sh(1),1])];
+%     image(1:-sh(1),:)=[];
+% end
+% 
+% if sh(2)>0 % pad left
+%     image=[repmat(image(:,1),[1,sh(2)]), image];
+%     image(:,size(image,2)-sh(2)+1:size(image,2))=[];
+% elseif sh(2)<0 % pad right
+%     image=[image, repmat(image(:,size(image,2)),[1,-sh(2)])];
+%     image(:,1:-sh(2))=[];
+% end
+
+image=shift_image(image,sh);
+
+imouts=floor(size(image)/ds);
+
+imout=zeros(imouts);
+for id=1:ds
+    for jd=1:ds
+        imout=imout+image(id:ds:size(image,1),jd:ds:size(image,2));
+    end
+end
+imout=imout/ds/ds;
+

@@ -1,0 +1,18 @@
+% This demo file will just load 4 demo CAD files.
+%
+disp('This demo will load 4 files to show some sample CAD to Matlab conversions')
+disp(' ')
+disp('Loading first demo file, just a bar with some holes:')
+cad2matdemo('link1.stl')
+disp(' ')
+disp('Loading second demo file, a hook:')
+cad2matdemo('hook.stl')
+disp(' ')
+disp('Loading third demo file, mouse cover:')
+cad2matdemo('cap.slp')
+disp(' ')
+disp('Loading forth demo file, a sprocket:')
+cad2matdemo('sprocket.slp')
+disp(' ')
+disp('Demos all done, try making a STL file, and load it in matlab with:')
+disp('cad2matdemo(''yourfile.stl'')')

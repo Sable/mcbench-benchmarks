@@ -1,0 +1,1823 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<CompilationUnits id="0">
+    <FunctionList col="1" fullpath="/Users/isbadawi/mcbench-benchmarks/7489-fitgauss/fitgauss.m" id="1" line="1">
+        <Function col="1" id="2" line="1">
+            <Name col="27" id="3" line="1" nameId="fitgauss"/>
+            <InputParamList>
+                <Name col="36" id="4" line="1" nameId="yk"/>
+                <Name col="40" id="5" line="1" nameId="xk"/>
+                <Name col="44" id="6" line="1" nameId="guess_A"/>
+                <Name col="53" id="7" line="1" nameId="guess_mu"/>
+                <Name col="63" id="8" line="1" nameId="guess_sigma"/>
+            </InputParamList>
+            <OutputParamList>
+                <Name col="11" id="9" line="1" nameId="A"/>
+                <Name col="14" id="10" line="1" nameId="mu"/>
+                <Name col="18" id="11" line="1" nameId="sigma"/>
+            </OutputParamList>
+            <StmtList>
+                <AssignStmt col="1" id="12" line="29" outputSuppressed="true">
+                    <NameExpr col="1" id="13" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="29">
+                        <Name col="1" id="14" line="29" nameId="MAX_ITERATIONS"/>
+                    </NameExpr>
+                    <IntLiteralExpr col="18" id="15" line="29" value="100"/>
+                </AssignStmt>
+                <AssignStmt col="1" id="16" line="30" outputSuppressed="true">
+                    <NameExpr col="1" id="17" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="30">
+                        <Name col="1" id="18" line="30" nameId="CHI2_REL_TOL"/>
+                    </NameExpr>
+                    <FPLiteralExpr col="18" id="19" line="30" value="1e-3"/>
+                </AssignStmt>
+                <ExprStmt col="1" id="20" line="33" outputSuppressed="true">
+                    <ParameterizedExpr col="1" id="21" line="33">
+                        <NameExpr col="1" id="22" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="33">
+                            <Name col="1" id="23" line="33" nameId="error"/>
+                        </NameExpr>
+                        <ParameterizedExpr col="7" id="24" line="33">
+                            <NameExpr col="7" id="25" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="33">
+                                <Name col="7" id="26" line="33" nameId="nargchk"/>
+                            </NameExpr>
+                            <IntLiteralExpr col="15" id="27" line="33" value="2"/>
+                            <IntLiteralExpr col="17" id="28" line="33" value="5"/>
+                            <NameExpr col="19" id="29" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="33">
+                                <Name col="19" id="30" line="33" nameId="nargin"/>
+                            </NameExpr>
+                        </ParameterizedExpr>
+                    </ParameterizedExpr>
+                </ExprStmt>
+                <IfStmt col="1" id="31" line="34">
+                    <IfBlock col="1" id="32" line="34">
+                        <NotExpr col="4" id="33" line="34">
+                            <ParameterizedExpr col="5" id="34" line="34">
+                                <NameExpr col="5" id="35" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="34">
+                                    <Name col="5" id="36" line="34" nameId="isnumeric"/>
+                                </NameExpr>
+                                <NameExpr col="15" id="37" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="34">
+                                    <Name col="15" id="38" line="34" nameId="yk"/>
+                                </NameExpr>
+                            </ParameterizedExpr>
+                        </NotExpr>
+                        <StmtList>
+                            <ExprStmt col="20" id="39" line="34" outputSuppressed="true">
+                                <ParameterizedExpr col="20" id="40" line="34">
+                                    <NameExpr col="20" id="41" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="34">
+                                        <Name col="20" id="42" line="34" nameId="error"/>
+                                    </NameExpr>
+                                    <StringLiteralExpr col="26" id="43" line="34" value="Y must be numeric."/>
+                                </ParameterizedExpr>
+                            </ExprStmt>
+                        </StmtList>
+                    </IfBlock>
+                </IfStmt>
+                <IfStmt col="1" id="44" line="35">
+                    <IfBlock col="1" id="45" line="35">
+                        <NotExpr col="4" id="46" line="35">
+                            <ParameterizedExpr col="5" id="47" line="35">
+                                <NameExpr col="5" id="48" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="35">
+                                    <Name col="5" id="49" line="35" nameId="isnumeric"/>
+                                </NameExpr>
+                                <NameExpr col="15" id="50" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="35">
+                                    <Name col="15" id="51" line="35" nameId="xk"/>
+                                </NameExpr>
+                            </ParameterizedExpr>
+                        </NotExpr>
+                        <StmtList>
+                            <ExprStmt col="20" id="52" line="35" outputSuppressed="true">
+                                <ParameterizedExpr col="20" id="53" line="35">
+                                    <NameExpr col="20" id="54" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="35">
+                                        <Name col="20" id="55" line="35" nameId="error"/>
+                                    </NameExpr>
+                                    <StringLiteralExpr col="26" id="56" line="35" value="X must be numeric."/>
+                                </ParameterizedExpr>
+                            </ExprStmt>
+                        </StmtList>
+                    </IfBlock>
+                </IfStmt>
+                <IfStmt col="1" id="57" line="36">
+                    <IfBlock col="1" id="58" line="36">
+                        <NEExpr col="4" id="59" line="36">
+                            <ParameterizedExpr col="4" id="60" line="36">
+                                <NameExpr col="4" id="61" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="36">
+                                    <Name col="4" id="62" line="36" nameId="length"/>
+                                </NameExpr>
+                                <NameExpr col="11" id="63" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="36">
+                                    <Name col="11" id="64" line="36" nameId="xk"/>
+                                </NameExpr>
+                            </ParameterizedExpr>
+                            <ParameterizedExpr col="18" id="65" line="36">
+                                <NameExpr col="18" id="66" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="36">
+                                    <Name col="18" id="67" line="36" nameId="length"/>
+                                </NameExpr>
+                                <NameExpr col="25" id="68" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="36">
+                                    <Name col="25" id="69" line="36" nameId="yk"/>
+                                </NameExpr>
+                            </ParameterizedExpr>
+                        </NEExpr>
+                        <StmtList>
+                            <ExprStmt col="30" id="70" line="36" outputSuppressed="true">
+                                <ParameterizedExpr col="30" id="71" line="36">
+                                    <NameExpr col="30" id="72" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="36">
+                                        <Name col="30" id="73" line="36" nameId="error"/>
+                                    </NameExpr>
+                                    <StringLiteralExpr col="36" id="74" line="36" value="X and Y must have same length."/>
+                                </ParameterizedExpr>
+                            </ExprStmt>
+                        </StmtList>
+                    </IfBlock>
+                </IfStmt>
+                <AssignStmt col="1" id="75" line="39" outputSuppressed="true">
+                    <NameExpr col="1" id="76" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="39">
+                        <Name col="1" id="77" line="39" nameId="swarn"/>
+                    </NameExpr>
+                    <NameExpr col="9" id="78" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="39">
+                        <Name col="9" id="79" line="39" nameId="warning"/>
+                    </NameExpr>
+                </AssignStmt>
+                <ExprStmt col="1" id="80" line="40" outputSuppressed="false">
+                    <ParameterizedExpr col="1" id="81" line="40">
+                        <NameExpr col="1" id="82" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="40">
+                            <Name col="1" id="83" line="40" nameId="warning"/>
+                        </NameExpr>
+                        <StringLiteralExpr col="9" id="84" line="40" value="off"/>
+                    </ParameterizedExpr>
+                </ExprStmt>
+                <IfStmt col="1" id="85" line="43">
+                    <IfBlock col="1" id="86" line="43">
+                        <ShortCircuitAndExpr col="4" id="87" line="43">
+                            <ParameterizedExpr col="4" id="88" line="43">
+                                <NameExpr col="4" id="89" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="43">
+                                    <Name col="4" id="90" line="43" nameId="exist"/>
+                                </NameExpr>
+                                <StringLiteralExpr col="10" id="91" line="43" value="guess_mu"/>
+                                <StringLiteralExpr col="22" id="92" line="43" value="var"/>
+                            </ParameterizedExpr>
+                            <NotExpr col="32" id="93" line="43">
+                                <ParameterizedExpr col="33" id="94" line="43">
+                                    <NameExpr col="33" id="95" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="43">
+                                        <Name col="33" id="96" line="43" nameId="isempty"/>
+                                    </NameExpr>
+                                    <NameExpr col="41" id="97" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="43">
+                                        <Name col="41" id="98" line="43" nameId="guess_mu"/>
+                                    </NameExpr>
+                                </ParameterizedExpr>
+                            </NotExpr>
+                        </ShortCircuitAndExpr>
+                        <StmtList>
+                            <IfStmt col="2" id="99" line="44">
+                                <IfBlock col="2" id="100" line="44">
+                                    <ShortCircuitOrExpr col="5" id="101" line="44">
+                                        <NotExpr col="5" id="102" line="44">
+                                            <ParameterizedExpr col="6" id="103" line="44">
+                                                <NameExpr col="6" id="104" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="44">
+                                                    <Name col="6" id="105" line="44" nameId="isnumeric"/>
+                                                </NameExpr>
+                                                <NameExpr col="16" id="106" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="44">
+                                                    <Name col="16" id="107" line="44" nameId="guess_mu"/>
+                                                </NameExpr>
+                                            </ParameterizedExpr>
+                                        </NotExpr>
+                                        <NEExpr col="29" id="108" line="44">
+                                            <ParameterizedExpr col="29" id="109" line="44">
+                                                <NameExpr col="29" id="110" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="44">
+                                                    <Name col="29" id="111" line="44" nameId="length"/>
+                                                </NameExpr>
+                                                <NameExpr col="36" id="112" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="44">
+                                                    <Name col="36" id="113" line="44" nameId="guess_mu"/>
+                                                </NameExpr>
+                                            </ParameterizedExpr>
+                                            <IntLiteralExpr col="49" id="114" line="44" value="1"/>
+                                        </NEExpr>
+                                    </ShortCircuitOrExpr>
+                                    <StmtList>
+                                        <ExprStmt col="3" id="115" line="45" outputSuppressed="true">
+                                            <ParameterizedExpr col="3" id="116" line="45">
+                                                <NameExpr col="3" id="117" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="45">
+                                                    <Name col="3" id="118" line="45" nameId="error"/>
+                                                </NameExpr>
+                                                <StringLiteralExpr col="9" id="119" line="45" value="GUESS_MU must be a numeric scalar."/>
+                                            </ParameterizedExpr>
+                                        </ExprStmt>
+                                    </StmtList>
+                                </IfBlock>
+                            </IfStmt>
+                            <AssignStmt col="2" id="120" line="47" outputSuppressed="true">
+                                <NameExpr col="2" id="121" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="47">
+                                    <Name col="2" id="122" line="47" nameId="mu"/>
+                                </NameExpr>
+                                <NameExpr col="7" id="123" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="47">
+                                    <Name col="7" id="124" line="47" nameId="guess_mu"/>
+                                </NameExpr>
+                            </AssignStmt>
+                        </StmtList>
+                    </IfBlock>
+                    <ElseBlock col="1" id="125" line="48">
+                        <StmtList>
+                            <AssignStmt col="2" id="126" line="50" outputSuppressed="true">
+                                <NameExpr col="2" id="127" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="50">
+                                    <Name col="2" id="128" line="50" nameId="idx"/>
+                                </NameExpr>
+                                <ParameterizedExpr col="8" id="129" line="50">
+                                    <NameExpr col="8" id="130" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="50">
+                                        <Name col="8" id="131" line="50" nameId="findmaxima"/>
+                                    </NameExpr>
+                                    <NameExpr col="19" id="132" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="50">
+                                        <Name col="19" id="133" line="50" nameId="yk"/>
+                                    </NameExpr>
+                                </ParameterizedExpr>
+                            </AssignStmt>
+                            <IfStmt col="2" id="134" line="51">
+                                <IfBlock col="2" id="135" line="51">
+                                    <ParameterizedExpr col="5" id="136" line="51">
+                                        <NameExpr col="5" id="137" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="51">
+                                            <Name col="5" id="138" line="51" nameId="isempty"/>
+                                        </NameExpr>
+                                        <NameExpr col="13" id="139" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="51">
+                                            <Name col="13" id="140" line="51" nameId="idx"/>
+                                        </NameExpr>
+                                    </ParameterizedExpr>
+                                    <StmtList>
+                                        <AssignStmt col="3" id="141" line="54" outputSuppressed="true">
+                                            <MatrixExpr col="3" id="142" line="54">
+                                                <Row col="4" id="143" line="54">
+                                                    <NameExpr col="4" id="144" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="54">
+                                                        <Name col="4" id="145" line="54" nameId="dummy"/>
+                                                    </NameExpr>
+                                                    <NameExpr col="11" id="146" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="54">
+                                                        <Name col="11" id="147" line="54" nameId="idx2"/>
+                                                    </NameExpr>
+                                                </Row>
+                                            </MatrixExpr>
+                                            <ParameterizedExpr col="19" id="148" line="54">
+                                                <NameExpr col="19" id="149" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="54">
+                                                    <Name col="19" id="150" line="54" nameId="max"/>
+                                                </NameExpr>
+                                                <NameExpr col="23" id="151" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="54">
+                                                    <Name col="23" id="152" line="54" nameId="yk"/>
+                                                </NameExpr>
+                                            </ParameterizedExpr>
+                                        </AssignStmt>
+                                        <AssignStmt col="3" id="153" line="55" outputSuppressed="true">
+                                            <NameExpr col="3" id="154" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="55">
+                                                <Name col="3" id="155" line="55" nameId="mu"/>
+                                            </NameExpr>
+                                            <ParameterizedExpr col="8" id="156" line="55">
+                                                <NameExpr col="8" id="157" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="55">
+                                                    <Name col="8" id="158" line="55" nameId="xk"/>
+                                                </NameExpr>
+                                                <NameExpr col="11" id="159" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="55">
+                                                    <Name col="11" id="160" line="55" nameId="idx2"/>
+                                                </NameExpr>
+                                            </ParameterizedExpr>
+                                        </AssignStmt>
+                                    </StmtList>
+                                </IfBlock>
+                                <ElseBlock col="2" id="161" line="56">
+                                    <StmtList>
+                                        <AssignStmt col="3" id="162" line="58" outputSuppressed="true">
+                                            <MatrixExpr col="3" id="163" line="58">
+                                                <Row col="4" id="164" line="58">
+                                                    <NameExpr col="4" id="165" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="58">
+                                                        <Name col="4" id="166" line="58" nameId="dummy"/>
+                                                    </NameExpr>
+                                                    <NameExpr col="11" id="167" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="58">
+                                                        <Name col="11" id="168" line="58" nameId="idx2"/>
+                                                    </NameExpr>
+                                                </Row>
+                                            </MatrixExpr>
+                                            <ParameterizedExpr col="19" id="169" line="58">
+                                                <NameExpr col="19" id="170" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="58">
+                                                    <Name col="19" id="171" line="58" nameId="max"/>
+                                                </NameExpr>
+                                                <ParameterizedExpr col="23" id="172" line="58">
+                                                    <NameExpr col="23" id="173" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="58">
+                                                        <Name col="23" id="174" line="58" nameId="yk"/>
+                                                    </NameExpr>
+                                                    <NameExpr col="26" id="175" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="58">
+                                                        <Name col="26" id="176" line="58" nameId="idx"/>
+                                                    </NameExpr>
+                                                </ParameterizedExpr>
+                                            </ParameterizedExpr>
+                                        </AssignStmt>
+                                        <AssignStmt col="3" id="177" line="59" outputSuppressed="true">
+                                            <NameExpr col="3" id="178" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="59">
+                                                <Name col="3" id="179" line="59" nameId="mu"/>
+                                            </NameExpr>
+                                            <ParameterizedExpr col="8" id="180" line="59">
+                                                <NameExpr col="8" id="181" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="59">
+                                                    <Name col="8" id="182" line="59" nameId="xk"/>
+                                                </NameExpr>
+                                                <ParameterizedExpr col="11" id="183" line="59">
+                                                    <NameExpr col="11" id="184" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="59">
+                                                        <Name col="11" id="185" line="59" nameId="idx"/>
+                                                    </NameExpr>
+                                                    <NameExpr col="15" id="186" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="59">
+                                                        <Name col="15" id="187" line="59" nameId="idx2"/>
+                                                    </NameExpr>
+                                                </ParameterizedExpr>
+                                            </ParameterizedExpr>
+                                        </AssignStmt>
+                                    </StmtList>
+                                </ElseBlock>
+                            </IfStmt>
+                        </StmtList>
+                    </ElseBlock>
+                </IfStmt>
+                <IfStmt col="1" id="188" line="63">
+                    <IfBlock col="1" id="189" line="63">
+                        <ShortCircuitAndExpr col="4" id="190" line="63">
+                            <ParameterizedExpr col="4" id="191" line="63">
+                                <NameExpr col="4" id="192" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="63">
+                                    <Name col="4" id="193" line="63" nameId="exist"/>
+                                </NameExpr>
+                                <StringLiteralExpr col="10" id="194" line="63" value="guess_sigma"/>
+                                <StringLiteralExpr col="25" id="195" line="63" value="var"/>
+                            </ParameterizedExpr>
+                            <NotExpr col="35" id="196" line="63">
+                                <ParameterizedExpr col="36" id="197" line="63">
+                                    <NameExpr col="36" id="198" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="63">
+                                        <Name col="36" id="199" line="63" nameId="isempty"/>
+                                    </NameExpr>
+                                    <NameExpr col="44" id="200" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="63">
+                                        <Name col="44" id="201" line="63" nameId="guess_sigma"/>
+                                    </NameExpr>
+                                </ParameterizedExpr>
+                            </NotExpr>
+                        </ShortCircuitAndExpr>
+                        <StmtList>
+                            <IfStmt col="2" id="202" line="64">
+                                <IfBlock col="2" id="203" line="64">
+                                    <ShortCircuitOrExpr col="5" id="204" line="64">
+                                        <NotExpr col="5" id="205" line="64">
+                                            <ParameterizedExpr col="6" id="206" line="64">
+                                                <NameExpr col="6" id="207" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="64">
+                                                    <Name col="6" id="208" line="64" nameId="isnumeric"/>
+                                                </NameExpr>
+                                                <NameExpr col="16" id="209" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="64">
+                                                    <Name col="16" id="210" line="64" nameId="guess_sigma"/>
+                                                </NameExpr>
+                                            </ParameterizedExpr>
+                                        </NotExpr>
+                                        <NEExpr col="32" id="211" line="64">
+                                            <ParameterizedExpr col="32" id="212" line="64">
+                                                <NameExpr col="32" id="213" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="64">
+                                                    <Name col="32" id="214" line="64" nameId="length"/>
+                                                </NameExpr>
+                                                <NameExpr col="39" id="215" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="64">
+                                                    <Name col="39" id="216" line="64" nameId="guess_sigma"/>
+                                                </NameExpr>
+                                            </ParameterizedExpr>
+                                            <IntLiteralExpr col="55" id="217" line="64" value="1"/>
+                                        </NEExpr>
+                                    </ShortCircuitOrExpr>
+                                    <StmtList>
+                                        <ExprStmt col="3" id="218" line="65" outputSuppressed="true">
+                                            <ParameterizedExpr col="3" id="219" line="65">
+                                                <NameExpr col="3" id="220" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="65">
+                                                    <Name col="3" id="221" line="65" nameId="error"/>
+                                                </NameExpr>
+                                                <StringLiteralExpr col="9" id="222" line="65" value="GUESS_SIGMA must be a numeric scalar."/>
+                                            </ParameterizedExpr>
+                                        </ExprStmt>
+                                    </StmtList>
+                                </IfBlock>
+                            </IfStmt>
+                            <AssignStmt col="2" id="223" line="67" outputSuppressed="true">
+                                <NameExpr col="2" id="224" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="67">
+                                    <Name col="2" id="225" line="67" nameId="sigma"/>
+                                </NameExpr>
+                                <NameExpr col="10" id="226" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="67">
+                                    <Name col="10" id="227" line="67" nameId="guess_sigma"/>
+                                </NameExpr>
+                            </AssignStmt>
+                        </StmtList>
+                    </IfBlock>
+                    <ElseBlock col="1" id="228" line="68">
+                        <StmtList>
+                            <AssignStmt col="2" id="229" line="70" outputSuppressed="true">
+                                <NameExpr col="2" id="230" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="70">
+                                    <Name col="2" id="231" line="70" nameId="mk"/>
+                                </NameExpr>
+                                <GTExpr col="7" id="232" line="70">
+                                    <NameExpr col="7" id="233" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="70">
+                                        <Name col="7" id="234" line="70" nameId="yk"/>
+                                    </NameExpr>
+                                    <PlusExpr col="12" id="235" line="70">
+                                        <MDivExpr col="13" id="236" line="70">
+                                            <ParameterizedExpr col="13" id="237" line="70">
+                                                <NameExpr col="13" id="238" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="70">
+                                                    <Name col="13" id="239" line="70" nameId="max"/>
+                                                </NameExpr>
+                                                <NameExpr col="17" id="240" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="70">
+                                                    <Name col="17" id="241" line="70" nameId="yk"/>
+                                                </NameExpr>
+                                            </ParameterizedExpr>
+                                            <IntLiteralExpr col="21" id="242" line="70" value="2"/>
+                                        </MDivExpr>
+                                        <MDivExpr col="25" id="243" line="70">
+                                            <ParameterizedExpr col="25" id="244" line="70">
+                                                <NameExpr col="25" id="245" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="70">
+                                                    <Name col="25" id="246" line="70" nameId="max"/>
+                                                </NameExpr>
+                                                <NameExpr col="29" id="247" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="70">
+                                                    <Name col="29" id="248" line="70" nameId="yk"/>
+                                                </NameExpr>
+                                            </ParameterizedExpr>
+                                            <ParameterizedExpr col="33" id="249" line="70">
+                                                <NameExpr col="33" id="250" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="70">
+                                                    <Name col="33" id="251" line="70" nameId="length"/>
+                                                </NameExpr>
+                                                <NameExpr col="40" id="252" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="70">
+                                                    <Name col="40" id="253" line="70" nameId="yk"/>
+                                                </NameExpr>
+                                            </ParameterizedExpr>
+                                        </MDivExpr>
+                                    </PlusExpr>
+                                </GTExpr>
+                            </AssignStmt>
+                            <AssignStmt col="2" id="254" line="71" outputSuppressed="true">
+                                <NameExpr col="2" id="255" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="71">
+                                    <Name col="2" id="256" line="71" nameId="tophalf"/>
+                                </NameExpr>
+                                <ParameterizedExpr col="12" id="257" line="71">
+                                    <NameExpr col="12" id="258" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="71">
+                                        <Name col="12" id="259" line="71" nameId="yk"/>
+                                    </NameExpr>
+                                    <NameExpr col="15" id="260" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="71">
+                                        <Name col="15" id="261" line="71" nameId="mk"/>
+                                    </NameExpr>
+                                </ParameterizedExpr>
+                            </AssignStmt>
+                            <AssignStmt col="2" id="262" line="72" outputSuppressed="true">
+                                <NameExpr col="2" id="263" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="72">
+                                    <Name col="2" id="264" line="72" nameId="st"/>
+                                </NameExpr>
+                                <ParameterizedExpr col="7" id="265" line="72">
+                                    <NameExpr col="7" id="266" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="72">
+                                        <Name col="7" id="267" line="72" nameId="find"/>
+                                    </NameExpr>
+                                    <EQExpr col="12" id="268" line="72">
+                                        <NameExpr col="12" id="269" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="72">
+                                            <Name col="12" id="270" line="72" nameId="yk"/>
+                                        </NameExpr>
+                                        <ParameterizedExpr col="16" id="271" line="72">
+                                            <NameExpr col="16" id="272" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="72">
+                                                <Name col="16" id="273" line="72" nameId="tophalf"/>
+                                            </NameExpr>
+                                            <IntLiteralExpr col="24" id="274" line="72" value="1"/>
+                                        </ParameterizedExpr>
+                                    </EQExpr>
+                                </ParameterizedExpr>
+                            </AssignStmt>
+                            <AssignStmt col="2" id="275" line="73" outputSuppressed="true">
+                                <NameExpr col="2" id="276" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="73">
+                                    <Name col="2" id="277" line="73" nameId="sigma"/>
+                                </NameExpr>
+                                <ParameterizedExpr col="10" id="278" line="73">
+                                    <NameExpr col="10" id="279" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="73">
+                                        <Name col="10" id="280" line="73" nameId="abs"/>
+                                    </NameExpr>
+                                    <MinusExpr col="14" id="281" line="73">
+                                        <NameExpr col="14" id="282" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="73">
+                                            <Name col="14" id="283" line="73" nameId="mu"/>
+                                        </NameExpr>
+                                        <ParameterizedExpr col="17" id="284" line="73">
+                                            <NameExpr col="17" id="285" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="73">
+                                                <Name col="17" id="286" line="73" nameId="xk"/>
+                                            </NameExpr>
+                                            <ParameterizedExpr col="20" id="287" line="73">
+                                                <NameExpr col="20" id="288" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="73">
+                                                    <Name col="20" id="289" line="73" nameId="st"/>
+                                                </NameExpr>
+                                                <IntLiteralExpr col="23" id="290" line="73" value="1"/>
+                                            </ParameterizedExpr>
+                                        </ParameterizedExpr>
+                                    </MinusExpr>
+                                </ParameterizedExpr>
+                            </AssignStmt>
+                            <IfStmt col="2" id="291" line="75">
+                                <IfBlock col="2" id="292" line="75">
+                                    <LTExpr col="5" id="293" line="75">
+                                        <ParameterizedExpr col="5" id="294" line="75">
+                                            <NameExpr col="5" id="295" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="75">
+                                                <Name col="5" id="296" line="75" nameId="abs"/>
+                                            </NameExpr>
+                                            <NameExpr col="9" id="297" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="75">
+                                                <Name col="9" id="298" line="75" nameId="sigma"/>
+                                            </NameExpr>
+                                        </ParameterizedExpr>
+                                        <FPLiteralExpr col="18" id="299" line="75" value="1e-8"/>
+                                    </LTExpr>
+                                    <StmtList>
+                                        <AssignStmt col="3" id="300" line="77" outputSuppressed="true">
+                                            <NameExpr col="3" id="301" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="77">
+                                                <Name col="3" id="302" line="77" nameId="sigma"/>
+                                            </NameExpr>
+                                            <MDivExpr col="11" id="303" line="77">
+                                                <ParameterizedExpr col="11" id="304" line="77">
+                                                    <NameExpr col="11" id="305" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="77">
+                                                        <Name col="11" id="306" line="77" nameId="xk"/>
+                                                    </NameExpr>
+                                                    <EndExpr col="14" id="307" line="77"/>
+                                                </ParameterizedExpr>
+                                                <IntLiteralExpr col="19" id="308" line="77" value="2"/>
+                                            </MDivExpr>
+                                        </AssignStmt>
+                                    </StmtList>
+                                </IfBlock>
+                            </IfStmt>
+                        </StmtList>
+                    </ElseBlock>
+                </IfStmt>
+                <IfStmt col="1" id="309" line="81">
+                    <IfBlock col="1" id="310" line="81">
+                        <ShortCircuitAndExpr col="4" id="311" line="81">
+                            <ParameterizedExpr col="4" id="312" line="81">
+                                <NameExpr col="4" id="313" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="81">
+                                    <Name col="4" id="314" line="81" nameId="exist"/>
+                                </NameExpr>
+                                <StringLiteralExpr col="10" id="315" line="81" value="guess_A"/>
+                                <StringLiteralExpr col="21" id="316" line="81" value="var"/>
+                            </ParameterizedExpr>
+                            <NotExpr col="31" id="317" line="81">
+                                <ParameterizedExpr col="32" id="318" line="81">
+                                    <NameExpr col="32" id="319" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="81">
+                                        <Name col="32" id="320" line="81" nameId="isempty"/>
+                                    </NameExpr>
+                                    <NameExpr col="40" id="321" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="81">
+                                        <Name col="40" id="322" line="81" nameId="guess_A"/>
+                                    </NameExpr>
+                                </ParameterizedExpr>
+                            </NotExpr>
+                        </ShortCircuitAndExpr>
+                        <StmtList>
+                            <IfStmt col="2" id="323" line="82">
+                                <IfBlock col="2" id="324" line="82">
+                                    <ShortCircuitOrExpr col="5" id="325" line="82">
+                                        <NotExpr col="5" id="326" line="82">
+                                            <ParameterizedExpr col="6" id="327" line="82">
+                                                <NameExpr col="6" id="328" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="82">
+                                                    <Name col="6" id="329" line="82" nameId="isnumeric"/>
+                                                </NameExpr>
+                                                <NameExpr col="16" id="330" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="82">
+                                                    <Name col="16" id="331" line="82" nameId="guess_A"/>
+                                                </NameExpr>
+                                            </ParameterizedExpr>
+                                        </NotExpr>
+                                        <NEExpr col="28" id="332" line="82">
+                                            <ParameterizedExpr col="28" id="333" line="82">
+                                                <NameExpr col="28" id="334" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="82">
+                                                    <Name col="28" id="335" line="82" nameId="length"/>
+                                                </NameExpr>
+                                                <NameExpr col="35" id="336" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="82">
+                                                    <Name col="35" id="337" line="82" nameId="guess_A"/>
+                                                </NameExpr>
+                                            </ParameterizedExpr>
+                                            <IntLiteralExpr col="47" id="338" line="82" value="1"/>
+                                        </NEExpr>
+                                    </ShortCircuitOrExpr>
+                                    <StmtList>
+                                        <ExprStmt col="3" id="339" line="83" outputSuppressed="true">
+                                            <ParameterizedExpr col="3" id="340" line="83">
+                                                <NameExpr col="3" id="341" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="83">
+                                                    <Name col="3" id="342" line="83" nameId="error"/>
+                                                </NameExpr>
+                                                <StringLiteralExpr col="9" id="343" line="83" value="GUESS_A must be a numeric scalar."/>
+                                            </ParameterizedExpr>
+                                        </ExprStmt>
+                                    </StmtList>
+                                </IfBlock>
+                            </IfStmt>
+                            <AssignStmt col="2" id="344" line="85" outputSuppressed="true">
+                                <NameExpr col="2" id="345" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="85">
+                                    <Name col="2" id="346" line="85" nameId="A"/>
+                                </NameExpr>
+                                <NameExpr col="6" id="347" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="85">
+                                    <Name col="6" id="348" line="85" nameId="guess_A"/>
+                                </NameExpr>
+                            </AssignStmt>
+                        </StmtList>
+                    </IfBlock>
+                    <ElseBlock col="1" id="349" line="86">
+                        <StmtList>
+                            <AssignStmt col="2" id="350" line="87" outputSuppressed="true">
+                                <NameExpr col="2" id="351" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="87">
+                                    <Name col="2" id="352" line="87" nameId="A"/>
+                                </NameExpr>
+                                <ParameterizedExpr col="6" id="353" line="87">
+                                    <NameExpr col="6" id="354" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="87">
+                                        <Name col="6" id="355" line="87" nameId="traprule"/>
+                                    </NameExpr>
+                                    <NameExpr col="15" id="356" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="87">
+                                        <Name col="15" id="357" line="87" nameId="yk"/>
+                                    </NameExpr>
+                                    <ParameterizedExpr col="18" id="358" line="87">
+                                        <NameExpr col="18" id="359" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="87">
+                                            <Name col="18" id="360" line="87" nameId="mean"/>
+                                        </NameExpr>
+                                        <ParameterizedExpr col="23" id="361" line="87">
+                                            <NameExpr col="23" id="362" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="87">
+                                                <Name col="23" id="363" line="87" nameId="diff"/>
+                                            </NameExpr>
+                                            <NameExpr col="28" id="364" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="87">
+                                                <Name col="28" id="365" line="87" nameId="xk"/>
+                                            </NameExpr>
+                                        </ParameterizedExpr>
+                                    </ParameterizedExpr>
+                                </ParameterizedExpr>
+                            </AssignStmt>
+                        </StmtList>
+                    </ElseBlock>
+                </IfStmt>
+                <AssignStmt col="1" id="366" line="92" outputSuppressed="true">
+                    <NameExpr col="1" id="367" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="92">
+                        <Name col="1" id="368" line="92" nameId="Ai"/>
+                    </NameExpr>
+                    <MatrixExpr col="6" id="369" line="92">
+                        <Row col="7" id="370" line="92">
+                            <NameExpr col="7" id="371" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="92">
+                                <Name col="7" id="372" line="92" nameId="A"/>
+                            </NameExpr>
+                            <NameExpr col="9" id="373" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="92">
+                                <Name col="9" id="374" line="92" nameId="mu"/>
+                            </NameExpr>
+                            <NameExpr col="12" id="375" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="92">
+                                <Name col="12" id="376" line="92" nameId="sigma"/>
+                            </NameExpr>
+                        </Row>
+                    </MatrixExpr>
+                </AssignStmt>
+                <AssignStmt col="1" id="377" line="93" outputSuppressed="true">
+                    <NameExpr col="1" id="378" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="93">
+                        <Name col="1" id="379" line="93" nameId="Ai"/>
+                    </NameExpr>
+                    <ParameterizedExpr col="6" id="380" line="93">
+                        <NameExpr col="6" id="381" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="93">
+                            <Name col="6" id="382" line="93" nameId="Ai"/>
+                        </NameExpr>
+                        <ColonExpr col="9" id="383" line="93"/>
+                    </ParameterizedExpr>
+                </AssignStmt>
+                <AssignStmt col="1" id="384" line="96" outputSuppressed="true">
+                    <NameExpr col="1" id="385" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="96">
+                        <Name col="1" id="386" line="96" nameId="counter"/>
+                    </NameExpr>
+                    <IntLiteralExpr col="11" id="387" line="96" value="0"/>
+                </AssignStmt>
+                <AssignStmt col="1" id="388" line="97" outputSuppressed="true">
+                    <NameExpr col="1" id="389" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="97">
+                        <Name col="1" id="390" line="97" nameId="loop"/>
+                    </NameExpr>
+                    <IntLiteralExpr col="11" id="391" line="97" value="1"/>
+                </AssignStmt>
+                <AssignStmt col="1" id="392" line="98" outputSuppressed="true">
+                    <NameExpr col="1" id="393" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="98">
+                        <Name col="1" id="394" line="98" nameId="lambda"/>
+                    </NameExpr>
+                    <IntLiteralExpr col="11" id="395" line="98" value="1000"/>
+                </AssignStmt>
+                <AssignStmt col="1" id="396" line="99" outputSuppressed="true">
+                    <NameExpr col="1" id="397" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="99">
+                        <Name col="1" id="398" line="99" nameId="Fold"/>
+                    </NameExpr>
+                    <MatrixExpr col="8" id="399" line="99">
+                        <Row col="9" id="400" line="99">
+                            <FPLiteralExpr col="9" id="401" line="99" value="0.01"/>
+                            <FPLiteralExpr col="14" id="402" line="99" value="0.01"/>
+                            <FPLiteralExpr col="19" id="403" line="99" value="0.01"/>
+                        </Row>
+                    </MatrixExpr>
+                </AssignStmt>
+                <AssignStmt col="1" id="404" line="100" outputSuppressed="true">
+                    <NameExpr col="1" id="405" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="100">
+                        <Name col="1" id="406" line="100" nameId="Fold"/>
+                    </NameExpr>
+                    <ParameterizedExpr col="8" id="407" line="100">
+                        <NameExpr col="8" id="408" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="100">
+                            <Name col="8" id="409" line="100" nameId="Fold"/>
+                        </NameExpr>
+                        <ColonExpr col="13" id="410" line="100"/>
+                    </ParameterizedExpr>
+                </AssignStmt>
+                <WhileStmt col="1" id="411" line="102">
+                    <EQExpr col="7" id="412" line="102">
+                        <NameExpr col="7" id="413" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="102">
+                            <Name col="7" id="414" line="102" nameId="loop"/>
+                        </NameExpr>
+                        <IntLiteralExpr col="13" id="415" line="102" value="1"/>
+                    </EQExpr>
+                    <StmtList>
+                        <AssignStmt col="2" id="416" line="103" outputSuppressed="true">
+                            <NameExpr col="2" id="417" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="103">
+                                <Name col="2" id="418" line="103" nameId="counter"/>
+                            </NameExpr>
+                            <PlusExpr col="12" id="419" line="103">
+                                <NameExpr col="12" id="420" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="103">
+                                    <Name col="12" id="421" line="103" nameId="counter"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="20" id="422" line="103" value="1"/>
+                            </PlusExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="423" line="104" outputSuppressed="true">
+                            <NameExpr col="2" id="424" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="104">
+                                <Name col="2" id="425" line="104" nameId="Ah"/>
+                            </NameExpr>
+                            <NameExpr col="10" id="426" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="104">
+                                <Name col="10" id="427" line="104" nameId="Ai"/>
+                            </NameExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="428" line="105" outputSuppressed="true">
+                            <NameExpr col="2" id="429" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="105">
+                                <Name col="2" id="430" line="105" nameId="A"/>
+                            </NameExpr>
+                            <ParameterizedExpr col="10" id="431" line="105">
+                                <NameExpr col="10" id="432" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="105">
+                                    <Name col="10" id="433" line="105" nameId="Ai"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="13" id="434" line="105" value="1"/>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="435" line="106" outputSuppressed="true">
+                            <NameExpr col="2" id="436" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="106">
+                                <Name col="2" id="437" line="106" nameId="mu"/>
+                            </NameExpr>
+                            <ParameterizedExpr col="10" id="438" line="106">
+                                <NameExpr col="10" id="439" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="106">
+                                    <Name col="10" id="440" line="106" nameId="Ai"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="13" id="441" line="106" value="2"/>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="442" line="107" outputSuppressed="true">
+                            <NameExpr col="2" id="443" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="107">
+                                <Name col="2" id="444" line="107" nameId="sigma"/>
+                            </NameExpr>
+                            <ParameterizedExpr col="10" id="445" line="107">
+                                <NameExpr col="10" id="446" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="107">
+                                    <Name col="10" id="447" line="107" nameId="Ai"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="13" id="448" line="107" value="3"/>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="449" line="108" outputSuppressed="true">
+                            <NameExpr col="2" id="450" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="108">
+                                <Name col="2" id="451" line="108" nameId="fx"/>
+                            </NameExpr>
+                            <ParameterizedExpr col="7" id="452" line="108">
+                                <NameExpr col="7" id="453" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="108">
+                                    <Name col="7" id="454" line="108" nameId="fgauss"/>
+                                </NameExpr>
+                                <NameExpr col="14" id="455" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="108">
+                                    <Name col="14" id="456" line="108" nameId="xk"/>
+                                </NameExpr>
+                                <NameExpr col="17" id="457" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="108">
+                                    <Name col="17" id="458" line="108" nameId="A"/>
+                                </NameExpr>
+                                <NameExpr col="19" id="459" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="108">
+                                    <Name col="19" id="460" line="108" nameId="mu"/>
+                                </NameExpr>
+                                <NameExpr col="22" id="461" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="108">
+                                    <Name col="22" id="462" line="108" nameId="sigma"/>
+                                </NameExpr>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="463" line="109" outputSuppressed="true">
+                            <NameExpr col="2" id="464" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="109">
+                                <Name col="2" id="465" line="109" nameId="rk"/>
+                            </NameExpr>
+                            <MinusExpr col="7" id="466" line="109">
+                                <NameExpr col="7" id="467" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="109">
+                                    <Name col="7" id="468" line="109" nameId="yk"/>
+                                </NameExpr>
+                                <NameExpr col="10" id="469" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="109">
+                                    <Name col="10" id="470" line="109" nameId="fx"/>
+                                </NameExpr>
+                            </MinusExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="471" line="113" outputSuppressed="true">
+                            <NameExpr col="2" id="472" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="113">
+                                <Name col="2" id="473" line="113" nameId="dfdA"/>
+                            </NameExpr>
+                            <EDivExpr col="13" id="474" line="113">
+                                <NameExpr col="13" id="475" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="113">
+                                    <Name col="13" id="476" line="113" nameId="fx"/>
+                                </NameExpr>
+                                <NameExpr col="19" id="477" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="113">
+                                    <Name col="19" id="478" line="113" nameId="A"/>
+                                </NameExpr>
+                            </EDivExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="479" line="114" outputSuppressed="true">
+                            <NameExpr col="2" id="480" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="114">
+                                <Name col="2" id="481" line="114" nameId="dfdmu"/>
+                            </NameExpr>
+                            <EDivExpr col="13" id="482" line="114">
+                                <ETimesExpr col="13" id="483" line="114">
+                                    <NameExpr col="13" id="484" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="114">
+                                        <Name col="13" id="485" line="114" nameId="fx"/>
+                                    </NameExpr>
+                                    <MinusExpr col="19" id="486" line="114">
+                                        <NameExpr col="20" id="487" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="114">
+                                            <Name col="20" id="488" line="114" nameId="xk"/>
+                                        </NameExpr>
+                                        <NameExpr col="23" id="489" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="114">
+                                            <Name col="23" id="490" line="114" nameId="mu"/>
+                                        </NameExpr>
+                                    </MinusExpr>
+                                </ETimesExpr>
+                                <MPowExpr col="30" id="491" line="114">
+                                    <NameExpr col="30" id="492" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="114">
+                                        <Name col="30" id="493" line="114" nameId="sigma"/>
+                                    </NameExpr>
+                                    <IntLiteralExpr col="36" id="494" line="114" value="2"/>
+                                </MPowExpr>
+                            </EDivExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="495" line="115" outputSuppressed="true">
+                            <NameExpr col="2" id="496" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="115">
+                                <Name col="2" id="497" line="115" nameId="dfdsigma"/>
+                            </NameExpr>
+                            <ETimesExpr col="13" id="498" line="115">
+                                <NameExpr col="13" id="499" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="115">
+                                    <Name col="13" id="500" line="115" nameId="fx"/>
+                                </NameExpr>
+                                <MinusExpr col="19" id="501" line="115">
+                                    <MDivExpr col="20" id="502" line="115">
+                                        <EPowExpr col="20" id="503" line="115">
+                                            <MinusExpr col="20" id="504" line="115">
+                                                <NameExpr col="21" id="505" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="115">
+                                                    <Name col="21" id="506" line="115" nameId="xk"/>
+                                                </NameExpr>
+                                                <NameExpr col="24" id="507" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="115">
+                                                    <Name col="24" id="508" line="115" nameId="mu"/>
+                                                </NameExpr>
+                                            </MinusExpr>
+                                            <IntLiteralExpr col="29" id="509" line="115" value="2"/>
+                                        </EPowExpr>
+                                        <MPowExpr col="33" id="510" line="115">
+                                            <NameExpr col="33" id="511" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="115">
+                                                <Name col="33" id="512" line="115" nameId="sigma"/>
+                                            </NameExpr>
+                                            <IntLiteralExpr col="39" id="513" line="115" value="3"/>
+                                        </MPowExpr>
+                                    </MDivExpr>
+                                    <MDivExpr col="43" id="514" line="115">
+                                        <IntLiteralExpr col="43" id="515" line="115" value="1"/>
+                                        <NameExpr col="45" id="516" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="115">
+                                            <Name col="45" id="517" line="115" nameId="sigma"/>
+                                        </NameExpr>
+                                    </MDivExpr>
+                                </MinusExpr>
+                            </ETimesExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="518" line="125" outputSuppressed="true">
+                            <ParameterizedExpr col="2" id="519" line="125">
+                                <NameExpr col="2" id="520" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="125">
+                                    <Name col="2" id="521" line="125" nameId="Jacob"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="8" id="522" line="125" value="1"/>
+                                <IntLiteralExpr col="10" id="523" line="125" value="1"/>
+                            </ParameterizedExpr>
+                            <ParameterizedExpr col="15" id="524" line="125">
+                                <NameExpr col="15" id="525" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="125">
+                                    <Name col="15" id="526" line="125" nameId="sum"/>
+                                </NameExpr>
+                                <MTimesExpr col="19" id="527" line="125">
+                                    <PlusExpr col="19" id="528" line="125">
+                                        <IntLiteralExpr col="20" id="529" line="125" value="1"/>
+                                        <NameExpr col="22" id="530" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="125">
+                                            <Name col="22" id="531" line="125" nameId="lambda"/>
+                                        </NameExpr>
+                                    </PlusExpr>
+                                    <EPowExpr col="30" id="532" line="125">
+                                        <NameExpr col="30" id="533" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="125">
+                                            <Name col="30" id="534" line="125" nameId="dfdA"/>
+                                        </NameExpr>
+                                        <IntLiteralExpr col="36" id="535" line="125" value="2"/>
+                                    </EPowExpr>
+                                </MTimesExpr>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="536" line="126" outputSuppressed="true">
+                            <ParameterizedExpr col="2" id="537" line="126">
+                                <NameExpr col="2" id="538" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="126">
+                                    <Name col="2" id="539" line="126" nameId="Jacob"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="8" id="540" line="126" value="1"/>
+                                <IntLiteralExpr col="10" id="541" line="126" value="2"/>
+                            </ParameterizedExpr>
+                            <ParameterizedExpr col="15" id="542" line="126">
+                                <NameExpr col="15" id="543" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="126">
+                                    <Name col="15" id="544" line="126" nameId="sum"/>
+                                </NameExpr>
+                                <ETimesExpr col="19" id="545" line="126">
+                                    <NameExpr col="19" id="546" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="126">
+                                        <Name col="19" id="547" line="126" nameId="dfdA"/>
+                                    </NameExpr>
+                                    <NameExpr col="25" id="548" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="126">
+                                        <Name col="25" id="549" line="126" nameId="dfdmu"/>
+                                    </NameExpr>
+                                </ETimesExpr>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="550" line="127" outputSuppressed="true">
+                            <ParameterizedExpr col="2" id="551" line="127">
+                                <NameExpr col="2" id="552" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="127">
+                                    <Name col="2" id="553" line="127" nameId="Jacob"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="8" id="554" line="127" value="1"/>
+                                <IntLiteralExpr col="10" id="555" line="127" value="3"/>
+                            </ParameterizedExpr>
+                            <ParameterizedExpr col="15" id="556" line="127">
+                                <NameExpr col="15" id="557" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="127">
+                                    <Name col="15" id="558" line="127" nameId="sum"/>
+                                </NameExpr>
+                                <ETimesExpr col="19" id="559" line="127">
+                                    <NameExpr col="19" id="560" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="127">
+                                        <Name col="19" id="561" line="127" nameId="dfdA"/>
+                                    </NameExpr>
+                                    <NameExpr col="25" id="562" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="127">
+                                        <Name col="25" id="563" line="127" nameId="dfdsigma"/>
+                                    </NameExpr>
+                                </ETimesExpr>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="564" line="128" outputSuppressed="true">
+                            <ParameterizedExpr col="2" id="565" line="128">
+                                <NameExpr col="2" id="566" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="128">
+                                    <Name col="2" id="567" line="128" nameId="Jacob"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="8" id="568" line="128" value="2"/>
+                                <IntLiteralExpr col="10" id="569" line="128" value="1"/>
+                            </ParameterizedExpr>
+                            <ParameterizedExpr col="15" id="570" line="128">
+                                <NameExpr col="15" id="571" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="128">
+                                    <Name col="15" id="572" line="128" nameId="Jacob"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="21" id="573" line="128" value="1"/>
+                                <IntLiteralExpr col="23" id="574" line="128" value="2"/>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="575" line="129" outputSuppressed="true">
+                            <ParameterizedExpr col="2" id="576" line="129">
+                                <NameExpr col="2" id="577" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="129">
+                                    <Name col="2" id="578" line="129" nameId="Jacob"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="8" id="579" line="129" value="2"/>
+                                <IntLiteralExpr col="10" id="580" line="129" value="2"/>
+                            </ParameterizedExpr>
+                            <ParameterizedExpr col="15" id="581" line="129">
+                                <NameExpr col="15" id="582" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="129">
+                                    <Name col="15" id="583" line="129" nameId="sum"/>
+                                </NameExpr>
+                                <MTimesExpr col="19" id="584" line="129">
+                                    <PlusExpr col="19" id="585" line="129">
+                                        <IntLiteralExpr col="20" id="586" line="129" value="1"/>
+                                        <NameExpr col="22" id="587" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="129">
+                                            <Name col="22" id="588" line="129" nameId="lambda"/>
+                                        </NameExpr>
+                                    </PlusExpr>
+                                    <EPowExpr col="30" id="589" line="129">
+                                        <NameExpr col="30" id="590" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="129">
+                                            <Name col="30" id="591" line="129" nameId="dfdmu"/>
+                                        </NameExpr>
+                                        <IntLiteralExpr col="37" id="592" line="129" value="2"/>
+                                    </EPowExpr>
+                                </MTimesExpr>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="593" line="130" outputSuppressed="true">
+                            <ParameterizedExpr col="2" id="594" line="130">
+                                <NameExpr col="2" id="595" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="130">
+                                    <Name col="2" id="596" line="130" nameId="Jacob"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="8" id="597" line="130" value="2"/>
+                                <IntLiteralExpr col="10" id="598" line="130" value="3"/>
+                            </ParameterizedExpr>
+                            <ParameterizedExpr col="15" id="599" line="130">
+                                <NameExpr col="15" id="600" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="130">
+                                    <Name col="15" id="601" line="130" nameId="sum"/>
+                                </NameExpr>
+                                <ETimesExpr col="19" id="602" line="130">
+                                    <NameExpr col="19" id="603" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="130">
+                                        <Name col="19" id="604" line="130" nameId="dfdmu"/>
+                                    </NameExpr>
+                                    <NameExpr col="26" id="605" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="130">
+                                        <Name col="26" id="606" line="130" nameId="dfdsigma"/>
+                                    </NameExpr>
+                                </ETimesExpr>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="607" line="131" outputSuppressed="true">
+                            <ParameterizedExpr col="2" id="608" line="131">
+                                <NameExpr col="2" id="609" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="131">
+                                    <Name col="2" id="610" line="131" nameId="Jacob"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="8" id="611" line="131" value="3"/>
+                                <IntLiteralExpr col="10" id="612" line="131" value="1"/>
+                            </ParameterizedExpr>
+                            <ParameterizedExpr col="15" id="613" line="131">
+                                <NameExpr col="15" id="614" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="131">
+                                    <Name col="15" id="615" line="131" nameId="Jacob"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="21" id="616" line="131" value="1"/>
+                                <IntLiteralExpr col="23" id="617" line="131" value="3"/>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="618" line="132" outputSuppressed="true">
+                            <ParameterizedExpr col="2" id="619" line="132">
+                                <NameExpr col="2" id="620" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="132">
+                                    <Name col="2" id="621" line="132" nameId="Jacob"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="8" id="622" line="132" value="3"/>
+                                <IntLiteralExpr col="10" id="623" line="132" value="2"/>
+                            </ParameterizedExpr>
+                            <ParameterizedExpr col="15" id="624" line="132">
+                                <NameExpr col="15" id="625" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="132">
+                                    <Name col="15" id="626" line="132" nameId="Jacob"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="21" id="627" line="132" value="2"/>
+                                <IntLiteralExpr col="23" id="628" line="132" value="3"/>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="629" line="133" outputSuppressed="true">
+                            <ParameterizedExpr col="2" id="630" line="133">
+                                <NameExpr col="2" id="631" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="133">
+                                    <Name col="2" id="632" line="133" nameId="Jacob"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="8" id="633" line="133" value="3"/>
+                                <IntLiteralExpr col="10" id="634" line="133" value="3"/>
+                            </ParameterizedExpr>
+                            <ParameterizedExpr col="15" id="635" line="133">
+                                <NameExpr col="15" id="636" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="133">
+                                    <Name col="15" id="637" line="133" nameId="sum"/>
+                                </NameExpr>
+                                <MTimesExpr col="19" id="638" line="133">
+                                    <PlusExpr col="19" id="639" line="133">
+                                        <IntLiteralExpr col="20" id="640" line="133" value="1"/>
+                                        <NameExpr col="22" id="641" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="133">
+                                            <Name col="22" id="642" line="133" nameId="lambda"/>
+                                        </NameExpr>
+                                    </PlusExpr>
+                                    <EPowExpr col="30" id="643" line="133">
+                                        <NameExpr col="30" id="644" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="133">
+                                            <Name col="30" id="645" line="133" nameId="dfdsigma"/>
+                                        </NameExpr>
+                                        <IntLiteralExpr col="40" id="646" line="133" value="2"/>
+                                    </EPowExpr>
+                                </MTimesExpr>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="647" line="135" outputSuppressed="true">
+                            <ParameterizedExpr col="2" id="648" line="135">
+                                <NameExpr col="2" id="649" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="135">
+                                    <Name col="2" id="650" line="135" nameId="F"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="4" id="651" line="135" value="1"/>
+                            </ParameterizedExpr>
+                            <ParameterizedExpr col="9" id="652" line="135">
+                                <NameExpr col="9" id="653" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="135">
+                                    <Name col="9" id="654" line="135" nameId="sum"/>
+                                </NameExpr>
+                                <ETimesExpr col="13" id="655" line="135">
+                                    <NameExpr col="13" id="656" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="135">
+                                        <Name col="13" id="657" line="135" nameId="rk"/>
+                                    </NameExpr>
+                                    <NameExpr col="19" id="658" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="135">
+                                        <Name col="19" id="659" line="135" nameId="dfdA"/>
+                                    </NameExpr>
+                                </ETimesExpr>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="660" line="136" outputSuppressed="true">
+                            <ParameterizedExpr col="2" id="661" line="136">
+                                <NameExpr col="2" id="662" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="136">
+                                    <Name col="2" id="663" line="136" nameId="F"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="4" id="664" line="136" value="2"/>
+                            </ParameterizedExpr>
+                            <ParameterizedExpr col="9" id="665" line="136">
+                                <NameExpr col="9" id="666" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="136">
+                                    <Name col="9" id="667" line="136" nameId="sum"/>
+                                </NameExpr>
+                                <ETimesExpr col="13" id="668" line="136">
+                                    <NameExpr col="13" id="669" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="136">
+                                        <Name col="13" id="670" line="136" nameId="rk"/>
+                                    </NameExpr>
+                                    <NameExpr col="19" id="671" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="136">
+                                        <Name col="19" id="672" line="136" nameId="dfdmu"/>
+                                    </NameExpr>
+                                </ETimesExpr>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="673" line="137" outputSuppressed="true">
+                            <ParameterizedExpr col="2" id="674" line="137">
+                                <NameExpr col="2" id="675" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="137">
+                                    <Name col="2" id="676" line="137" nameId="F"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="4" id="677" line="137" value="3"/>
+                            </ParameterizedExpr>
+                            <ParameterizedExpr col="9" id="678" line="137">
+                                <NameExpr col="9" id="679" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="137">
+                                    <Name col="9" id="680" line="137" nameId="sum"/>
+                                </NameExpr>
+                                <ETimesExpr col="13" id="681" line="137">
+                                    <NameExpr col="13" id="682" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="137">
+                                        <Name col="13" id="683" line="137" nameId="rk"/>
+                                    </NameExpr>
+                                    <NameExpr col="19" id="684" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="137">
+                                        <Name col="19" id="685" line="137" nameId="dfdsigma"/>
+                                    </NameExpr>
+                                </ETimesExpr>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="686" line="138" outputSuppressed="true">
+                            <NameExpr col="2" id="687" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="138">
+                                <Name col="2" id="688" line="138" nameId="F"/>
+                            </NameExpr>
+                            <ParameterizedExpr col="6" id="689" line="138">
+                                <NameExpr col="6" id="690" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="138">
+                                    <Name col="6" id="691" line="138" nameId="F"/>
+                                </NameExpr>
+                                <ColonExpr col="8" id="692" line="138"/>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="693" line="139" outputSuppressed="true">
+                            <NameExpr col="2" id="694" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="139">
+                                <Name col="2" id="695" line="139" nameId="Ai"/>
+                            </NameExpr>
+                            <PlusExpr col="7" id="696" line="139">
+                                <NameExpr col="7" id="697" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="139">
+                                    <Name col="7" id="698" line="139" nameId="Ah"/>
+                                </NameExpr>
+                                <MTimesExpr col="12" id="699" line="139">
+                                    <ParameterizedExpr col="12" id="700" line="139">
+                                        <NameExpr col="12" id="701" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="139">
+                                            <Name col="12" id="702" line="139" nameId="inv"/>
+                                        </NameExpr>
+                                        <NameExpr col="16" id="703" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="139">
+                                            <Name col="16" id="704" line="139" nameId="Jacob"/>
+                                        </NameExpr>
+                                    </ParameterizedExpr>
+                                    <NameExpr col="23" id="705" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="139">
+                                        <Name col="23" id="706" line="139" nameId="F"/>
+                                    </NameExpr>
+                                </MTimesExpr>
+                            </PlusExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="707" line="141" outputSuppressed="true">
+                            <NameExpr col="2" id="708" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="141">
+                                <Name col="2" id="709" line="141" nameId="rkold"/>
+                            </NameExpr>
+                            <MinusExpr col="12" id="710" line="141">
+                                <NameExpr col="12" id="711" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="141">
+                                    <Name col="12" id="712" line="141" nameId="yk"/>
+                                </NameExpr>
+                                <ParameterizedExpr col="15" id="713" line="141">
+                                    <NameExpr col="15" id="714" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="141">
+                                        <Name col="15" id="715" line="141" nameId="fgauss"/>
+                                    </NameExpr>
+                                    <NameExpr col="22" id="716" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="141">
+                                        <Name col="22" id="717" line="141" nameId="xk"/>
+                                    </NameExpr>
+                                    <ParameterizedExpr col="25" id="718" line="141">
+                                        <NameExpr col="25" id="719" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="141">
+                                            <Name col="25" id="720" line="141" nameId="Ah"/>
+                                        </NameExpr>
+                                        <IntLiteralExpr col="28" id="721" line="141" value="1"/>
+                                    </ParameterizedExpr>
+                                    <ParameterizedExpr col="31" id="722" line="141">
+                                        <NameExpr col="31" id="723" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="141">
+                                            <Name col="31" id="724" line="141" nameId="Ah"/>
+                                        </NameExpr>
+                                        <IntLiteralExpr col="34" id="725" line="141" value="2"/>
+                                    </ParameterizedExpr>
+                                    <ParameterizedExpr col="37" id="726" line="141">
+                                        <NameExpr col="37" id="727" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="141">
+                                            <Name col="37" id="728" line="141" nameId="Ah"/>
+                                        </NameExpr>
+                                        <IntLiteralExpr col="40" id="729" line="141" value="3"/>
+                                    </ParameterizedExpr>
+                                </ParameterizedExpr>
+                            </MinusExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="730" line="142" outputSuppressed="true">
+                            <NameExpr col="2" id="731" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="142">
+                                <Name col="2" id="732" line="142" nameId="chi2old"/>
+                            </NameExpr>
+                            <ParameterizedExpr col="12" id="733" line="142">
+                                <NameExpr col="12" id="734" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="142">
+                                    <Name col="12" id="735" line="142" nameId="sumsq"/>
+                                </NameExpr>
+                                <NameExpr col="18" id="736" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="142">
+                                    <Name col="18" id="737" line="142" nameId="rkold"/>
+                                </NameExpr>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="738" line="143" outputSuppressed="true">
+                            <NameExpr col="2" id="739" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="143">
+                                <Name col="2" id="740" line="143" nameId="rk"/>
+                            </NameExpr>
+                            <MinusExpr col="12" id="741" line="143">
+                                <NameExpr col="12" id="742" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="143">
+                                    <Name col="12" id="743" line="143" nameId="yk"/>
+                                </NameExpr>
+                                <ParameterizedExpr col="15" id="744" line="143">
+                                    <NameExpr col="15" id="745" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="143">
+                                        <Name col="15" id="746" line="143" nameId="fgauss"/>
+                                    </NameExpr>
+                                    <NameExpr col="22" id="747" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="143">
+                                        <Name col="22" id="748" line="143" nameId="xk"/>
+                                    </NameExpr>
+                                    <ParameterizedExpr col="25" id="749" line="143">
+                                        <NameExpr col="25" id="750" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="143">
+                                            <Name col="25" id="751" line="143" nameId="Ai"/>
+                                        </NameExpr>
+                                        <IntLiteralExpr col="28" id="752" line="143" value="1"/>
+                                    </ParameterizedExpr>
+                                    <ParameterizedExpr col="31" id="753" line="143">
+                                        <NameExpr col="31" id="754" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="143">
+                                            <Name col="31" id="755" line="143" nameId="Ai"/>
+                                        </NameExpr>
+                                        <IntLiteralExpr col="34" id="756" line="143" value="2"/>
+                                    </ParameterizedExpr>
+                                    <ParameterizedExpr col="37" id="757" line="143">
+                                        <NameExpr col="37" id="758" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="143">
+                                            <Name col="37" id="759" line="143" nameId="Ai"/>
+                                        </NameExpr>
+                                        <IntLiteralExpr col="40" id="760" line="143" value="3"/>
+                                    </ParameterizedExpr>
+                                </ParameterizedExpr>
+                            </MinusExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="761" line="144" outputSuppressed="true">
+                            <NameExpr col="2" id="762" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="144">
+                                <Name col="2" id="763" line="144" nameId="chi2"/>
+                            </NameExpr>
+                            <ParameterizedExpr col="12" id="764" line="144">
+                                <NameExpr col="12" id="765" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="144">
+                                    <Name col="12" id="766" line="144" nameId="sumsq"/>
+                                </NameExpr>
+                                <NameExpr col="18" id="767" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="144">
+                                    <Name col="18" id="768" line="144" nameId="rk"/>
+                                </NameExpr>
+                            </ParameterizedExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="769" line="147" outputSuppressed="true">
+                            <NameExpr col="2" id="770" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="147">
+                                <Name col="2" id="771" line="147" nameId="pc_change"/>
+                            </NameExpr>
+                            <MDivExpr col="14" id="772" line="147">
+                                <MinusExpr col="14" id="773" line="147">
+                                    <ParameterizedExpr col="15" id="774" line="147">
+                                        <NameExpr col="15" id="775" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="147">
+                                            <Name col="15" id="776" line="147" nameId="sumsq"/>
+                                        </NameExpr>
+                                        <NameExpr col="21" id="777" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="147">
+                                            <Name col="21" id="778" line="147" nameId="F"/>
+                                        </NameExpr>
+                                    </ParameterizedExpr>
+                                    <ParameterizedExpr col="24" id="779" line="147">
+                                        <NameExpr col="24" id="780" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="147">
+                                            <Name col="24" id="781" line="147" nameId="sumsq"/>
+                                        </NameExpr>
+                                        <NameExpr col="30" id="782" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="147">
+                                            <Name col="30" id="783" line="147" nameId="Fold"/>
+                                        </NameExpr>
+                                    </ParameterizedExpr>
+                                </MinusExpr>
+                                <ParameterizedExpr col="39" id="784" line="147">
+                                    <NameExpr col="39" id="785" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="147">
+                                        <Name col="39" id="786" line="147" nameId="sumsq"/>
+                                    </NameExpr>
+                                    <NameExpr col="45" id="787" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="147">
+                                        <Name col="45" id="788" line="147" nameId="Fold"/>
+                                    </NameExpr>
+                                </ParameterizedExpr>
+                            </MDivExpr>
+                        </AssignStmt>
+                        <AssignStmt col="2" id="789" line="148" outputSuppressed="true">
+                            <NameExpr col="2" id="790" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="148">
+                                <Name col="2" id="791" line="148" nameId="Fold"/>
+                            </NameExpr>
+                            <NameExpr col="9" id="792" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="148">
+                                <Name col="9" id="793" line="148" nameId="F"/>
+                            </NameExpr>
+                        </AssignStmt>
+                        <IfStmt col="2" id="794" line="150">
+                            <IfBlock col="2" id="795" line="150">
+                                <GTExpr col="5" id="796" line="150">
+                                    <NameExpr col="5" id="797" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="150">
+                                        <Name col="5" id="798" line="150" nameId="chi2"/>
+                                    </NameExpr>
+                                    <NameExpr col="12" id="799" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="150">
+                                        <Name col="12" id="800" line="150" nameId="chi2old"/>
+                                    </NameExpr>
+                                </GTExpr>
+                                <StmtList>
+                                    <AssignStmt col="3" id="801" line="152" outputSuppressed="true">
+                                        <NameExpr col="3" id="802" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="152">
+                                            <Name col="3" id="803" line="152" nameId="lambda"/>
+                                        </NameExpr>
+                                        <MTimesExpr col="12" id="804" line="152">
+                                            <NameExpr col="12" id="805" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="152">
+                                                <Name col="12" id="806" line="152" nameId="lambda"/>
+                                            </NameExpr>
+                                            <IntLiteralExpr col="19" id="807" line="152" value="10"/>
+                                        </MTimesExpr>
+                                    </AssignStmt>
+                                </StmtList>
+                            </IfBlock>
+                            <ElseBlock col="2" id="808" line="153">
+                                <StmtList>
+                                    <IfStmt col="3" id="809" line="154">
+                                        <IfBlock col="3" id="810" line="154">
+                                            <ShortCircuitAndExpr col="6" id="811" line="154">
+                                                <LTExpr col="6" id="812" line="154">
+                                                    <MinusExpr col="7" id="813" line="154">
+                                                        <NameExpr col="7" id="814" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="154">
+                                                            <Name col="7" id="815" line="154" nameId="chi2"/>
+                                                        </NameExpr>
+                                                        <NameExpr col="12" id="816" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="154">
+                                                            <Name col="12" id="817" line="154" nameId="chi2old"/>
+                                                        </NameExpr>
+                                                    </MinusExpr>
+                                                    <IntLiteralExpr col="22" id="818" line="154" value="1"/>
+                                                </LTExpr>
+                                                <LTExpr col="28" id="819" line="154">
+                                                    <ParameterizedExpr col="29" id="820" line="154">
+                                                        <NameExpr col="29" id="821" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="154">
+                                                            <Name col="29" id="822" line="154" nameId="abs"/>
+                                                        </NameExpr>
+                                                        <NameExpr col="33" id="823" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="154">
+                                                            <Name col="33" id="824" line="154" nameId="pc_change"/>
+                                                        </NameExpr>
+                                                    </ParameterizedExpr>
+                                                    <NameExpr col="46" id="825" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="154">
+                                                        <Name col="46" id="826" line="154" nameId="CHI2_REL_TOL"/>
+                                                    </NameExpr>
+                                                </LTExpr>
+                                            </ShortCircuitAndExpr>
+                                            <StmtList>
+                                                <AssignStmt col="61" id="827" line="154" outputSuppressed="true">
+                                                    <NameExpr col="61" id="828" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="154">
+                                                        <Name col="61" id="829" line="154" nameId="loop"/>
+                                                    </NameExpr>
+                                                    <IntLiteralExpr col="66" id="830" line="154" value="0"/>
+                                                </AssignStmt>
+                                            </StmtList>
+                                        </IfBlock>
+                                    </IfStmt>
+                                    <AssignStmt col="3" id="831" line="156" outputSuppressed="true">
+                                        <NameExpr col="3" id="832" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="156">
+                                            <Name col="3" id="833" line="156" nameId="lambda"/>
+                                        </NameExpr>
+                                        <MDivExpr col="12" id="834" line="156">
+                                            <NameExpr col="12" id="835" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="156">
+                                                <Name col="12" id="836" line="156" nameId="lambda"/>
+                                            </NameExpr>
+                                            <IntLiteralExpr col="19" id="837" line="156" value="10"/>
+                                        </MDivExpr>
+                                    </AssignStmt>
+                                </StmtList>
+                            </ElseBlock>
+                        </IfStmt>
+                        <IfStmt col="2" id="838" line="159">
+                            <IfBlock col="2" id="839" line="159">
+                                <GTExpr col="5" id="840" line="159">
+                                    <NameExpr col="5" id="841" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="159">
+                                        <Name col="5" id="842" line="159" nameId="counter"/>
+                                    </NameExpr>
+                                    <NameExpr col="15" id="843" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="159">
+                                        <Name col="15" id="844" line="159" nameId="MAX_ITERATIONS"/>
+                                    </NameExpr>
+                                </GTExpr>
+                                <StmtList>
+                                    <AssignStmt col="31" id="845" line="159" outputSuppressed="true">
+                                        <NameExpr col="31" id="846" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="159">
+                                            <Name col="31" id="847" line="159" nameId="loop"/>
+                                        </NameExpr>
+                                        <IntLiteralExpr col="36" id="848" line="159" value="0"/>
+                                    </AssignStmt>
+                                </StmtList>
+                            </IfBlock>
+                        </IfStmt>
+                        <IfStmt col="2" id="849" line="160">
+                            <IfBlock col="2" id="850" line="160">
+                                <ParameterizedExpr col="5" id="851" line="160">
+                                    <NameExpr col="5" id="852" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="160">
+                                        <Name col="5" id="853" line="160" nameId="isnan"/>
+                                    </NameExpr>
+                                    <NameExpr col="11" id="854" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="160">
+                                        <Name col="11" id="855" line="160" nameId="chi2"/>
+                                    </NameExpr>
+                                </ParameterizedExpr>
+                                <StmtList>
+                                    <AssignStmt col="3" id="856" line="161" outputSuppressed="true">
+                                        <NameExpr col="3" id="857" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="161">
+                                            <Name col="3" id="858" line="161" nameId="A"/>
+                                        </NameExpr>
+                                        <NameExpr col="7" id="859" kind="BOT" kind_insensitive="IFUN" kind_sensitive="BOT" line="161">
+                                            <Name col="7" id="860" line="161" nameId="NaN"/>
+                                        </NameExpr>
+                                    </AssignStmt>
+                                    <AssignStmt col="12" id="861" line="161" outputSuppressed="true">
+                                        <NameExpr col="12" id="862" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="161">
+                                            <Name col="12" id="863" line="161" nameId="mu"/>
+                                        </NameExpr>
+                                        <NameExpr col="17" id="864" kind="BOT" kind_insensitive="IFUN" kind_sensitive="BOT" line="161">
+                                            <Name col="17" id="865" line="161" nameId="NaN"/>
+                                        </NameExpr>
+                                    </AssignStmt>
+                                    <AssignStmt col="22" id="866" line="161" outputSuppressed="true">
+                                        <NameExpr col="22" id="867" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="161">
+                                            <Name col="22" id="868" line="161" nameId="sigma"/>
+                                        </NameExpr>
+                                        <NameExpr col="30" id="869" kind="BOT" kind_insensitive="IFUN" kind_sensitive="BOT" line="161">
+                                            <Name col="30" id="870" line="161" nameId="NaN"/>
+                                        </NameExpr>
+                                    </AssignStmt>
+                                    <ExprStmt col="35" id="871" line="161" outputSuppressed="true">
+                                        <ParameterizedExpr col="35" id="872" line="161">
+                                            <NameExpr col="35" id="873" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="161">
+                                                <Name col="35" id="874" line="161" nameId="warning"/>
+                                            </NameExpr>
+                                            <NameExpr col="43" id="875" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="161">
+                                                <Name col="43" id="876" line="161" nameId="swarn"/>
+                                            </NameExpr>
+                                        </ParameterizedExpr>
+                                    </ExprStmt>
+                                    <ReturnStmt col="51" id="877" line="161" outputSuppressed="false"/>
+                                </StmtList>
+                            </IfBlock>
+                        </IfStmt>
+                    </StmtList>
+                </WhileStmt>
+                <ExprStmt col="1" id="878" line="167" outputSuppressed="true">
+                    <ParameterizedExpr col="1" id="879" line="167">
+                        <NameExpr col="1" id="880" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="167">
+                            <Name col="1" id="881" line="167" nameId="warning"/>
+                        </NameExpr>
+                        <NameExpr col="9" id="882" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="167">
+                            <Name col="9" id="883" line="167" nameId="swarn"/>
+                        </NameExpr>
+                    </ParameterizedExpr>
+                </ExprStmt>
+            </StmtList>
+        </Function>
+        <Function col="1" id="884" line="171">
+            <Name col="19" id="885" line="171" nameId="fgauss"/>
+            <InputParamList>
+                <Name col="26" id="886" line="171" nameId="x"/>
+                <Name col="28" id="887" line="171" nameId="A"/>
+                <Name col="30" id="888" line="171" nameId="mu"/>
+                <Name col="33" id="889" line="171" nameId="sigma"/>
+            </InputParamList>
+            <OutputParamList>
+                <Name col="10" id="890" line="171" nameId="output"/>
+            </OutputParamList>
+            <StmtList>
+                <AssignStmt col="1" id="891" line="174" outputSuppressed="true">
+                    <NameExpr col="1" id="892" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="174">
+                        <Name col="1" id="893" line="174" nameId="output"/>
+                    </NameExpr>
+                    <MDivExpr col="10" id="894" line="174">
+                        <MTimesExpr col="10" id="895" line="174">
+                            <NameExpr col="10" id="896" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="174">
+                                <Name col="10" id="897" line="174" nameId="A"/>
+                            </NameExpr>
+                            <ParameterizedExpr col="14" id="898" line="174">
+                                <NameExpr col="14" id="899" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="174">
+                                    <Name col="14" id="900" line="174" nameId="exp"/>
+                                </NameExpr>
+                                <MTimesExpr col="18" id="901" line="174">
+                                    <UMinusExpr col="18" id="902" line="174">
+                                        <FPLiteralExpr col="19" id="903" line="174" value="0.5"/>
+                                    </UMinusExpr>
+                                    <EPowExpr col="23" id="904" line="174">
+                                        <EDivExpr col="23" id="905" line="174">
+                                            <MinusExpr col="24" id="906" line="174">
+                                                <NameExpr col="25" id="907" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="174">
+                                                    <Name col="25" id="908" line="174" nameId="x"/>
+                                                </NameExpr>
+                                                <NameExpr col="27" id="909" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="174">
+                                                    <Name col="27" id="910" line="174" nameId="mu"/>
+                                                </NameExpr>
+                                            </MinusExpr>
+                                            <NameExpr col="32" id="911" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="174">
+                                                <Name col="32" id="912" line="174" nameId="sigma"/>
+                                            </NameExpr>
+                                        </EDivExpr>
+                                        <IntLiteralExpr col="40" id="913" line="174" value="2"/>
+                                    </EPowExpr>
+                                </MTimesExpr>
+                            </ParameterizedExpr>
+                        </MTimesExpr>
+                        <ParameterizedExpr col="45" id="914" line="174">
+                            <NameExpr col="45" id="915" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="174">
+                                <Name col="45" id="916" line="174" nameId="sqrt"/>
+                            </NameExpr>
+                            <MTimesExpr col="50" id="917" line="174">
+                                <MTimesExpr col="50" id="918" line="174">
+                                    <IntLiteralExpr col="50" id="919" line="174" value="2"/>
+                                    <NameExpr col="52" id="920" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="174">
+                                        <Name col="52" id="921" line="174" nameId="pi"/>
+                                    </NameExpr>
+                                </MTimesExpr>
+                                <MPowExpr col="55" id="922" line="174">
+                                    <NameExpr col="55" id="923" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="174">
+                                        <Name col="55" id="924" line="174" nameId="sigma"/>
+                                    </NameExpr>
+                                    <IntLiteralExpr col="61" id="925" line="174" value="2"/>
+                                </MPowExpr>
+                            </MTimesExpr>
+                        </ParameterizedExpr>
+                    </MDivExpr>
+                </AssignStmt>
+            </StmtList>
+        </Function>
+        <Function col="1" id="926" line="178">
+            <Name col="14" id="927" line="178" nameId="sumsq"/>
+            <InputParamList>
+                <Name col="20" id="928" line="178" nameId="b"/>
+                <Name col="22" id="929" line="178" nameId="dim"/>
+            </InputParamList>
+            <OutputParamList>
+                <Name col="10" id="930" line="178" nameId="a"/>
+            </OutputParamList>
+            <StmtList>
+                <IfStmt col="1" id="931" line="185">
+                    <IfBlock col="1" id="932" line="185">
+                        <EQExpr col="4" id="933" line="185">
+                            <NameExpr col="4" id="934" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="185">
+                                <Name col="4" id="935" line="185" nameId="nargin"/>
+                            </NameExpr>
+                            <IntLiteralExpr col="12" id="936" line="185" value="1"/>
+                        </EQExpr>
+                        <StmtList>
+                            <AssignStmt col="15" id="937" line="185" outputSuppressed="true">
+                                <NameExpr col="15" id="938" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="185">
+                                    <Name col="15" id="939" line="185" nameId="a"/>
+                                </NameExpr>
+                                <ParameterizedExpr col="19" id="940" line="185">
+                                    <NameExpr col="19" id="941" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="185">
+                                        <Name col="19" id="942" line="185" nameId="sum"/>
+                                    </NameExpr>
+                                    <ETimesExpr col="23" id="943" line="185">
+                                        <NameExpr col="23" id="944" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="185">
+                                            <Name col="23" id="945" line="185" nameId="b"/>
+                                        </NameExpr>
+                                        <NameExpr col="26" id="946" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="185">
+                                            <Name col="26" id="947" line="185" nameId="b"/>
+                                        </NameExpr>
+                                    </ETimesExpr>
+                                </ParameterizedExpr>
+                            </AssignStmt>
+                            <ReturnStmt col="30" id="948" line="185" outputSuppressed="true"/>
+                        </StmtList>
+                    </IfBlock>
+                </IfStmt>
+                <IfStmt col="1" id="949" line="186">
+                    <IfBlock col="1" id="950" line="186">
+                        <LTExpr col="4" id="951" line="186">
+                            <ParameterizedExpr col="4" id="952" line="186">
+                                <NameExpr col="4" id="953" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="186">
+                                    <Name col="4" id="954" line="186" nameId="ndims"/>
+                                </NameExpr>
+                                <NameExpr col="10" id="955" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="186">
+                                    <Name col="10" id="956" line="186" nameId="b"/>
+                                </NameExpr>
+                            </ParameterizedExpr>
+                            <NameExpr col="15" id="957" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="186">
+                                <Name col="15" id="958" line="186" nameId="dim"/>
+                            </NameExpr>
+                        </LTExpr>
+                        <StmtList>
+                            <ExprStmt col="20" id="959" line="186" outputSuppressed="true">
+                                <ParameterizedExpr col="20" id="960" line="186">
+                                    <NameExpr col="20" id="961" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="186">
+                                        <Name col="20" id="962" line="186" nameId="error"/>
+                                    </NameExpr>
+                                    <StringLiteralExpr col="26" id="963" line="186" value="DIM exceeds number of dimensions of B."/>
+                                </ParameterizedExpr>
+                            </ExprStmt>
+                        </StmtList>
+                    </IfBlock>
+                </IfStmt>
+                <AssignStmt col="1" id="964" line="187" outputSuppressed="true">
+                    <NameExpr col="1" id="965" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="187">
+                        <Name col="1" id="966" line="187" nameId="a"/>
+                    </NameExpr>
+                    <ParameterizedExpr col="5" id="967" line="187">
+                        <NameExpr col="5" id="968" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="187">
+                            <Name col="5" id="969" line="187" nameId="sum"/>
+                        </NameExpr>
+                        <ETimesExpr col="9" id="970" line="187">
+                            <NameExpr col="9" id="971" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="187">
+                                <Name col="9" id="972" line="187" nameId="b"/>
+                            </NameExpr>
+                            <NameExpr col="12" id="973" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="187">
+                                <Name col="12" id="974" line="187" nameId="b"/>
+                            </NameExpr>
+                        </ETimesExpr>
+                        <NameExpr col="14" id="975" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="187">
+                            <Name col="14" id="976" line="187" nameId="dim"/>
+                        </NameExpr>
+                    </ParameterizedExpr>
+                </AssignStmt>
+            </StmtList>
+        </Function>
+        <Function col="1" id="977" line="191">
+            <Name col="16" id="978" line="191" nameId="findmaxima"/>
+            <InputParamList>
+                <Name col="27" id="979" line="191" nameId="y"/>
+            </InputParamList>
+            <OutputParamList>
+                <Name col="10" id="980" line="191" nameId="idx"/>
+            </OutputParamList>
+            <StmtList>
+                <IfStmt col="1" id="981" line="194">
+                    <IfBlock col="1" id="982" line="194">
+                        <LTExpr col="4" id="983" line="194">
+                            <ParameterizedExpr col="4" id="984" line="194">
+                                <NameExpr col="4" id="985" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="194">
+                                    <Name col="4" id="986" line="194" nameId="length"/>
+                                </NameExpr>
+                                <NameExpr col="11" id="987" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="194">
+                                    <Name col="11" id="988" line="194" nameId="y"/>
+                                </NameExpr>
+                            </ParameterizedExpr>
+                            <IntLiteralExpr col="16" id="989" line="194" value="3"/>
+                        </LTExpr>
+                        <StmtList>
+                            <AssignStmt col="19" id="990" line="194" outputSuppressed="true">
+                                <NameExpr col="19" id="991" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="194">
+                                    <Name col="19" id="992" line="194" nameId="idx"/>
+                                </NameExpr>
+                                <MatrixExpr col="25" id="993" line="194"/>
+                            </AssignStmt>
+                            <ReturnStmt col="29" id="994" line="194" outputSuppressed="true"/>
+                        </StmtList>
+                    </IfBlock>
+                </IfStmt>
+                <AssignStmt col="1" id="995" line="195" outputSuppressed="true">
+                    <NameExpr col="1" id="996" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="195">
+                        <Name col="1" id="997" line="195" nameId="grad"/>
+                    </NameExpr>
+                    <ParameterizedExpr col="8" id="998" line="195">
+                        <NameExpr col="8" id="999" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="195">
+                            <Name col="8" id="1000" line="195" nameId="diff"/>
+                        </NameExpr>
+                        <NameExpr col="13" id="1001" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="195">
+                            <Name col="13" id="1002" line="195" nameId="y"/>
+                        </NameExpr>
+                    </ParameterizedExpr>
+                </AssignStmt>
+                <AssignStmt col="1" id="1003" line="196" outputSuppressed="true">
+                    <NameExpr col="1" id="1004" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="196">
+                        <Name col="1" id="1005" line="196" nameId="idx"/>
+                    </NameExpr>
+                    <PlusExpr col="7" id="1006" line="196">
+                        <ParameterizedExpr col="7" id="1007" line="196">
+                            <NameExpr col="7" id="1008" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="196">
+                                <Name col="7" id="1009" line="196" nameId="find"/>
+                            </NameExpr>
+                            <AndExpr col="12" id="1010" line="196">
+                                <LTExpr col="12" id="1011" line="196">
+                                    <ParameterizedExpr col="12" id="1012" line="196">
+                                        <NameExpr col="12" id="1013" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="196">
+                                            <Name col="12" id="1014" line="196" nameId="grad"/>
+                                        </NameExpr>
+                                        <RangeExpr col="17" id="1015" line="196">
+                                            <IntLiteralExpr col="17" id="1016" line="196" value="2"/>
+                                            <EndExpr col="19" id="1017" line="196"/>
+                                        </RangeExpr>
+                                    </ParameterizedExpr>
+                                    <IntLiteralExpr col="26" id="1018" line="196" value="0"/>
+                                </LTExpr>
+                                <GTExpr col="30" id="1019" line="196">
+                                    <ParameterizedExpr col="30" id="1020" line="196">
+                                        <NameExpr col="30" id="1021" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="196">
+                                            <Name col="30" id="1022" line="196" nameId="grad"/>
+                                        </NameExpr>
+                                        <RangeExpr col="35" id="1023" line="196">
+                                            <IntLiteralExpr col="35" id="1024" line="196" value="1"/>
+                                            <MinusExpr col="37" id="1025" line="196">
+                                                <EndExpr col="37" id="1026" line="196"/>
+                                                <IntLiteralExpr col="41" id="1027" line="196" value="1"/>
+                                            </MinusExpr>
+                                        </RangeExpr>
+                                    </ParameterizedExpr>
+                                    <IntLiteralExpr col="46" id="1028" line="196" value="0"/>
+                                </GTExpr>
+                            </AndExpr>
+                        </ParameterizedExpr>
+                        <IntLiteralExpr col="51" id="1029" line="196" value="1"/>
+                    </PlusExpr>
+                </AssignStmt>
+            </StmtList>
+        </Function>
+        <Function col="1" id="1030" line="200">
+            <Name col="19" id="1031" line="200" nameId="traprule"/>
+            <InputParamList>
+                <Name col="28" id="1032" line="200" nameId="y"/>
+                <Name col="30" id="1033" line="200" nameId="sep"/>
+            </InputParamList>
+            <OutputParamList>
+                <Name col="10" id="1034" line="200" nameId="output"/>
+            </OutputParamList>
+            <StmtList>
+                <IfStmt col="1" id="1035" line="209">
+                    <IfBlock col="1" id="1036" line="209">
+                        <EQExpr col="4" id="1037" line="209">
+                            <NameExpr col="4" id="1038" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="209">
+                                <Name col="4" id="1039" line="209" nameId="nargin"/>
+                            </NameExpr>
+                            <IntLiteralExpr col="12" id="1040" line="209" value="2"/>
+                        </EQExpr>
+                        <StmtList>
+                            <AssignStmt col="2" id="1041" line="210" outputSuppressed="true">
+                                <NameExpr col="2" id="1042" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="210">
+                                    <Name col="2" id="1043" line="210" nameId="output"/>
+                                </NameExpr>
+                                <MTimesExpr col="11" id="1044" line="210">
+                                    <NameExpr col="11" id="1045" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="210">
+                                        <Name col="11" id="1046" line="210" nameId="sep"/>
+                                    </NameExpr>
+                                    <MinusExpr col="15" id="1047" line="210">
+                                        <ParameterizedExpr col="16" id="1048" line="210">
+                                            <NameExpr col="16" id="1049" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="210">
+                                                <Name col="16" id="1050" line="210" nameId="sum"/>
+                                            </NameExpr>
+                                            <ParameterizedExpr col="20" id="1051" line="210">
+                                                <NameExpr col="20" id="1052" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="210">
+                                                    <Name col="20" id="1053" line="210" nameId="y"/>
+                                                </NameExpr>
+                                                <ColonExpr col="22" id="1054" line="210"/>
+                                            </ParameterizedExpr>
+                                        </ParameterizedExpr>
+                                        <MTimesExpr col="28" id="1055" line="210">
+                                            <FPLiteralExpr col="28" id="1056" line="210" value="0.5"/>
+                                            <PlusExpr col="32" id="1057" line="210">
+                                                <ParameterizedExpr col="33" id="1058" line="210">
+                                                    <NameExpr col="33" id="1059" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="210">
+                                                        <Name col="33" id="1060" line="210" nameId="y"/>
+                                                    </NameExpr>
+                                                    <IntLiteralExpr col="35" id="1061" line="210" value="1"/>
+                                                </ParameterizedExpr>
+                                                <ParameterizedExpr col="38" id="1062" line="210">
+                                                    <NameExpr col="38" id="1063" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="210">
+                                                        <Name col="38" id="1064" line="210" nameId="y"/>
+                                                    </NameExpr>
+                                                    <EndExpr col="40" id="1065" line="210"/>
+                                                </ParameterizedExpr>
+                                            </PlusExpr>
+                                        </MTimesExpr>
+                                    </MinusExpr>
+                                </MTimesExpr>
+                            </AssignStmt>
+                        </StmtList>
+                    </IfBlock>
+                    <ElseBlock col="1" id="1066" line="211">
+                        <StmtList>
+                            <AssignStmt col="2" id="1067" line="212" outputSuppressed="true">
+                                <NameExpr col="2" id="1068" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="212">
+                                    <Name col="2" id="1069" line="212" nameId="output"/>
+                                </NameExpr>
+                                <MinusExpr col="16" id="1070" line="212">
+                                    <ParameterizedExpr col="16" id="1071" line="212">
+                                        <NameExpr col="16" id="1072" kind="FUN" kind_insensitive="IFUN" kind_sensitive="FUN" line="212">
+                                            <Name col="16" id="1073" line="212" nameId="sum"/>
+                                        </NameExpr>
+                                        <ParameterizedExpr col="20" id="1074" line="212">
+                                            <NameExpr col="20" id="1075" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="212">
+                                                <Name col="20" id="1076" line="212" nameId="y"/>
+                                            </NameExpr>
+                                            <ColonExpr col="22" id="1077" line="212"/>
+                                        </ParameterizedExpr>
+                                    </ParameterizedExpr>
+                                    <MTimesExpr col="28" id="1078" line="212">
+                                        <FPLiteralExpr col="28" id="1079" line="212" value="0.5"/>
+                                        <PlusExpr col="32" id="1080" line="212">
+                                            <ParameterizedExpr col="33" id="1081" line="212">
+                                                <NameExpr col="33" id="1082" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="212">
+                                                    <Name col="33" id="1083" line="212" nameId="y"/>
+                                                </NameExpr>
+                                                <IntLiteralExpr col="35" id="1084" line="212" value="1"/>
+                                            </ParameterizedExpr>
+                                            <ParameterizedExpr col="38" id="1085" line="212">
+                                                <NameExpr col="38" id="1086" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="212">
+                                                    <Name col="38" id="1087" line="212" nameId="y"/>
+                                                </NameExpr>
+                                                <EndExpr col="40" id="1088" line="212"/>
+                                            </ParameterizedExpr>
+                                        </PlusExpr>
+                                    </MTimesExpr>
+                                </MinusExpr>
+                            </AssignStmt>
+                        </StmtList>
+                    </ElseBlock>
+                </IfStmt>
+            </StmtList>
+        </Function>
+    </FunctionList>
+</CompilationUnits>

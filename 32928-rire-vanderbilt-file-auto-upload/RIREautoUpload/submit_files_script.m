@@ -1,0 +1,6 @@
+clc
+
+submit_files('boris.oreshkin@mail.mcgill.ca', 'BorisRIREpassword', ...
+    'http://www.insight-journal.org/rire/myprofile.php', ...
+    [pwd, '/test_dir'], 0);
+

@@ -1,0 +1,975 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<CompilationUnits id="0">
+    <Script col="1" fullpath="/Users/isbadawi/mcbench-benchmarks/36966-risk-neutral-densities-for-financial-models/Script_Density_Heston.m" id="1" line="1" name="Script_Density_Heston">
+        <StmtList>
+            <AssignStmt col="1" id="2" line="32" outputSuppressed="true">
+                <NameExpr col="1" id="3" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="32">
+                    <Name col="1" id="4" line="32" nameId="t"/>
+                </NameExpr>
+                <IntLiteralExpr col="5" id="5" line="32" value="10"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="6" line="33" outputSuppressed="true">
+                <NameExpr col="1" id="7" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="33">
+                    <Name col="1" id="8" line="33" nameId="a"/>
+                </NameExpr>
+                <IntLiteralExpr col="5" id="9" line="33" value="600"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="10" line="34" outputSuppressed="true">
+                <NameExpr col="1" id="11" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="34">
+                    <Name col="1" id="12" line="34" nameId="N"/>
+                </NameExpr>
+                <IntLiteralExpr col="5" id="13" line="34" value="512"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="14" line="35" outputSuppressed="true">
+                <NameExpr col="1" id="15" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="35">
+                    <Name col="1" id="16" line="35" nameId="x"/>
+                </NameExpr>
+                <MDivExpr col="5" id="17" line="35">
+                    <MinusExpr col="5" id="18" line="35">
+                        <RangeExpr col="7" id="19" line="35">
+                            <IntLiteralExpr col="8" id="20" line="35" value="0"/>
+                            <MinusExpr col="10" id="21" line="35">
+                                <NameExpr col="10" id="22" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="35">
+                                    <Name col="10" id="23" line="35" nameId="N"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="12" id="24" line="35" value="1"/>
+                            </MinusExpr>
+                        </RangeExpr>
+                        <MDivExpr col="17" id="25" line="35">
+                            <NameExpr col="17" id="26" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="35">
+                                <Name col="17" id="27" line="35" nameId="N"/>
+                            </NameExpr>
+                            <IntLiteralExpr col="19" id="28" line="35" value="2"/>
+                        </MDivExpr>
+                    </MinusExpr>
+                    <NameExpr col="25" id="29" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="35">
+                        <Name col="25" id="30" line="35" nameId="a"/>
+                    </NameExpr>
+                </MDivExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="31" line="37" outputSuppressed="true">
+                <NameExpr col="1" id="32" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="37">
+                    <Name col="1" id="33" line="37" nameId="figname"/>
+                </NameExpr>
+                <StringLiteralExpr col="11" id="34" line="37" value="Risk Neutral Density - Heston"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="35" line="39" outputSuppressed="true">
+                <NameExpr col="1" id="36" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="39">
+                    <Name col="1" id="37" line="39" nameId="vInst"/>
+                </NameExpr>
+                <FPLiteralExpr col="9" id="38" line="39" value="0.02"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="39" line="40" outputSuppressed="true">
+                <NameExpr col="1" id="40" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="40">
+                    <Name col="1" id="41" line="40" nameId="vLong"/>
+                </NameExpr>
+                <FPLiteralExpr col="9" id="42" line="40" value="0.02"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="43" line="41" outputSuppressed="true">
+                <NameExpr col="1" id="44" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="41">
+                    <Name col="1" id="45" line="41" nameId="kappa"/>
+                </NameExpr>
+                <FPLiteralExpr col="9" id="46" line="41" value="0.1"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="47" line="42" outputSuppressed="true">
+                <NameExpr col="1" id="48" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="42">
+                    <Name col="1" id="49" line="42" nameId="omega"/>
+                </NameExpr>
+                <FPLiteralExpr col="9" id="50" line="42" value="0.2"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="51" line="43" outputSuppressed="true">
+                <NameExpr col="1" id="52" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="43">
+                    <Name col="1" id="53" line="43" nameId="rho"/>
+                </NameExpr>
+                <IntLiteralExpr col="7" id="54" line="43" value="0"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="55" line="47" outputSuppressed="true">
+                <NameExpr col="1" id="56" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="47">
+                    <Name col="1" id="57" line="47" nameId="f"/>
+                </NameExpr>
+                <LambdaExpr col="5" id="58" line="47">
+                    <Name col="7" id="59" line="47" nameId="x"/>
+                    <ParameterizedExpr col="10" id="60" line="47">
+                        <NameExpr col="10" id="61" kind="LDVAR" kind_insensitive="null" kind_sensitive="null" line="47">
+                            <Name col="10" id="62" line="47" nameId="cf_heston"/>
+                        </NameExpr>
+                        <NameExpr col="20" id="63" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="47">
+                            <Name col="20" id="64" line="47" nameId="x"/>
+                        </NameExpr>
+                        <NameExpr col="22" id="65" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="47">
+                            <Name col="22" id="66" line="47" nameId="vInst"/>
+                        </NameExpr>
+                        <NameExpr col="28" id="67" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="47">
+                            <Name col="28" id="68" line="47" nameId="vLong"/>
+                        </NameExpr>
+                        <NameExpr col="34" id="69" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="47">
+                            <Name col="34" id="70" line="47" nameId="kappa"/>
+                        </NameExpr>
+                        <NameExpr col="40" id="71" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="47">
+                            <Name col="40" id="72" line="47" nameId="omega"/>
+                        </NameExpr>
+                        <NameExpr col="46" id="73" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="47">
+                            <Name col="46" id="74" line="47" nameId="rho"/>
+                        </NameExpr>
+                        <NameExpr col="50" id="75" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="47">
+                            <Name col="50" id="76" line="47" nameId="t"/>
+                        </NameExpr>
+                        <IntLiteralExpr col="52" id="77" line="47" value="0"/>
+                    </ParameterizedExpr>
+                </LambdaExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="78" line="49" outputSuppressed="true">
+                <NameExpr col="1" id="79" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="49">
+                    <Name col="1" id="80" line="49" nameId="legendname"/>
+                </NameExpr>
+                <StringLiteralExpr col="14" id="81" line="49" value="Base parameter set"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="82" line="50" outputSuppressed="true">
+                <NameExpr col="1" id="83" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="50">
+                    <Name col="1" id="84" line="50" nameId="y"/>
+                </NameExpr>
+                <ParameterizedExpr col="5" id="85" line="50">
+                    <NameExpr col="5" id="86" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="50">
+                        <Name col="5" id="87" line="50" nameId="fftdensity"/>
+                    </NameExpr>
+                    <NameExpr col="16" id="88" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="50">
+                        <Name col="16" id="89" line="50" nameId="f"/>
+                    </NameExpr>
+                    <NameExpr col="18" id="90" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="50">
+                        <Name col="18" id="91" line="50" nameId="a"/>
+                    </NameExpr>
+                    <NameExpr col="20" id="92" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="50">
+                        <Name col="20" id="93" line="50" nameId="N"/>
+                    </NameExpr>
+                </ParameterizedExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="94" line="52" outputSuppressed="true">
+                <NameExpr col="1" id="95" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="52">
+                    <Name col="1" id="96" line="52" nameId="vInst_low"/>
+                </NameExpr>
+                <FPLiteralExpr col="13" id="97" line="52" value=".01"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="98" line="53" outputSuppressed="true">
+                <NameExpr col="1" id="99" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="53">
+                    <Name col="1" id="100" line="53" nameId="vInst_high"/>
+                </NameExpr>
+                <FPLiteralExpr col="14" id="101" line="53" value=".04"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="102" line="55" outputSuppressed="true">
+                <NameExpr col="1" id="103" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="55">
+                    <Name col="1" id="104" line="55" nameId="f_low"/>
+                </NameExpr>
+                <LambdaExpr col="9" id="105" line="55">
+                    <Name col="11" id="106" line="55" nameId="x"/>
+                    <ParameterizedExpr col="14" id="107" line="55">
+                        <NameExpr col="14" id="108" kind="LDVAR" kind_insensitive="null" kind_sensitive="null" line="55">
+                            <Name col="14" id="109" line="55" nameId="cf_heston"/>
+                        </NameExpr>
+                        <NameExpr col="24" id="110" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="55">
+                            <Name col="24" id="111" line="55" nameId="x"/>
+                        </NameExpr>
+                        <NameExpr col="26" id="112" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="55">
+                            <Name col="26" id="113" line="55" nameId="vInst_low"/>
+                        </NameExpr>
+                        <NameExpr col="36" id="114" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="55">
+                            <Name col="36" id="115" line="55" nameId="vLong"/>
+                        </NameExpr>
+                        <NameExpr col="42" id="116" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="55">
+                            <Name col="42" id="117" line="55" nameId="kappa"/>
+                        </NameExpr>
+                        <NameExpr col="48" id="118" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="55">
+                            <Name col="48" id="119" line="55" nameId="omega"/>
+                        </NameExpr>
+                        <NameExpr col="54" id="120" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="55">
+                            <Name col="54" id="121" line="55" nameId="rho"/>
+                        </NameExpr>
+                        <NameExpr col="58" id="122" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="55">
+                            <Name col="58" id="123" line="55" nameId="t"/>
+                        </NameExpr>
+                        <IntLiteralExpr col="60" id="124" line="55" value="0"/>
+                    </ParameterizedExpr>
+                </LambdaExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="125" line="56" outputSuppressed="true">
+                <NameExpr col="1" id="126" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="56">
+                    <Name col="1" id="127" line="56" nameId="f_high"/>
+                </NameExpr>
+                <LambdaExpr col="10" id="128" line="56">
+                    <Name col="12" id="129" line="56" nameId="x"/>
+                    <ParameterizedExpr col="16" id="130" line="56">
+                        <NameExpr col="16" id="131" kind="LDVAR" kind_insensitive="null" kind_sensitive="null" line="56">
+                            <Name col="16" id="132" line="56" nameId="cf_heston"/>
+                        </NameExpr>
+                        <NameExpr col="26" id="133" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="56">
+                            <Name col="26" id="134" line="56" nameId="x"/>
+                        </NameExpr>
+                        <NameExpr col="28" id="135" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="56">
+                            <Name col="28" id="136" line="56" nameId="vInst_high"/>
+                        </NameExpr>
+                        <NameExpr col="39" id="137" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="56">
+                            <Name col="39" id="138" line="56" nameId="vLong"/>
+                        </NameExpr>
+                        <NameExpr col="45" id="139" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="56">
+                            <Name col="45" id="140" line="56" nameId="kappa"/>
+                        </NameExpr>
+                        <NameExpr col="51" id="141" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="56">
+                            <Name col="51" id="142" line="56" nameId="omega"/>
+                        </NameExpr>
+                        <NameExpr col="57" id="143" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="56">
+                            <Name col="57" id="144" line="56" nameId="rho"/>
+                        </NameExpr>
+                        <NameExpr col="61" id="145" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="56">
+                            <Name col="61" id="146" line="56" nameId="t"/>
+                        </NameExpr>
+                        <IntLiteralExpr col="63" id="147" line="56" value="0"/>
+                    </ParameterizedExpr>
+                </LambdaExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="148" line="58" outputSuppressed="true">
+                <NameExpr col="1" id="149" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="58">
+                    <Name col="1" id="150" line="58" nameId="y_low"/>
+                </NameExpr>
+                <ParameterizedExpr col="9" id="151" line="58">
+                    <NameExpr col="9" id="152" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="58">
+                        <Name col="9" id="153" line="58" nameId="fftdensity"/>
+                    </NameExpr>
+                    <NameExpr col="20" id="154" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="58">
+                        <Name col="20" id="155" line="58" nameId="f_low"/>
+                    </NameExpr>
+                    <NameExpr col="26" id="156" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="58">
+                        <Name col="26" id="157" line="58" nameId="a"/>
+                    </NameExpr>
+                    <NameExpr col="28" id="158" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="58">
+                        <Name col="28" id="159" line="58" nameId="N"/>
+                    </NameExpr>
+                </ParameterizedExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="160" line="59" outputSuppressed="true">
+                <NameExpr col="1" id="161" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="59">
+                    <Name col="1" id="162" line="59" nameId="y_high"/>
+                </NameExpr>
+                <ParameterizedExpr col="10" id="163" line="59">
+                    <NameExpr col="10" id="164" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="59">
+                        <Name col="10" id="165" line="59" nameId="fftdensity"/>
+                    </NameExpr>
+                    <NameExpr col="21" id="166" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="59">
+                        <Name col="21" id="167" line="59" nameId="f_high"/>
+                    </NameExpr>
+                    <NameExpr col="28" id="168" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="59">
+                        <Name col="28" id="169" line="59" nameId="a"/>
+                    </NameExpr>
+                    <NameExpr col="30" id="170" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="59">
+                        <Name col="30" id="171" line="59" nameId="N"/>
+                    </NameExpr>
+                </ParameterizedExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="172" line="61" outputSuppressed="true">
+                <NameExpr col="1" id="173" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="61">
+                    <Name col="1" id="174" line="61" nameId="legendname_low"/>
+                </NameExpr>
+                <StringLiteralExpr col="18" id="175" line="61" value="Changing V(0) low value"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="176" line="62" outputSuppressed="true">
+                <NameExpr col="1" id="177" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="62">
+                    <Name col="1" id="178" line="62" nameId="legendname_high"/>
+                </NameExpr>
+                <StringLiteralExpr col="19" id="179" line="62" value="Changing V(0) high value"/>
+            </AssignStmt>
+            <ExprStmt col="1" id="180" line="65" outputSuppressed="true">
+                <ParameterizedExpr col="1" id="181" line="65">
+                    <NameExpr col="1" id="182" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="65">
+                        <Name col="1" id="183" line="65" nameId="createfigure_density"/>
+                    </NameExpr>
+                    <NameExpr col="22" id="184" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="65">
+                        <Name col="22" id="185" line="65" nameId="x"/>
+                    </NameExpr>
+                    <NameExpr col="24" id="186" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="65">
+                        <Name col="24" id="187" line="65" nameId="y"/>
+                    </NameExpr>
+                    <NameExpr col="26" id="188" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="65">
+                        <Name col="26" id="189" line="65" nameId="y_low"/>
+                    </NameExpr>
+                    <NameExpr col="32" id="190" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="65">
+                        <Name col="32" id="191" line="65" nameId="y_high"/>
+                    </NameExpr>
+                    <NameExpr col="5" id="192" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="66">
+                        <Name col="5" id="193" line="66" nameId="figname"/>
+                    </NameExpr>
+                    <NameExpr col="14" id="194" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="66">
+                        <Name col="14" id="195" line="66" nameId="legendname"/>
+                    </NameExpr>
+                    <NameExpr col="25" id="196" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="66">
+                        <Name col="25" id="197" line="66" nameId="legendname_low"/>
+                    </NameExpr>
+                    <NameExpr col="40" id="198" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="66">
+                        <Name col="40" id="199" line="66" nameId="legendname_high"/>
+                    </NameExpr>
+                </ParameterizedExpr>
+            </ExprStmt>
+            <AssignStmt col="1" id="200" line="68" outputSuppressed="true">
+                <NameExpr col="1" id="201" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="68">
+                    <Name col="1" id="202" line="68" nameId="vLong_low"/>
+                </NameExpr>
+                <FPLiteralExpr col="13" id="203" line="68" value=".01"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="204" line="69" outputSuppressed="true">
+                <NameExpr col="1" id="205" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="69">
+                    <Name col="1" id="206" line="69" nameId="vLong_high"/>
+                </NameExpr>
+                <FPLiteralExpr col="14" id="207" line="69" value=".04"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="208" line="71" outputSuppressed="true">
+                <NameExpr col="1" id="209" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="71">
+                    <Name col="1" id="210" line="71" nameId="f_low"/>
+                </NameExpr>
+                <LambdaExpr col="10" id="211" line="71">
+                    <Name col="12" id="212" line="71" nameId="x"/>
+                    <ParameterizedExpr col="15" id="213" line="71">
+                        <NameExpr col="15" id="214" kind="LDVAR" kind_insensitive="null" kind_sensitive="null" line="71">
+                            <Name col="15" id="215" line="71" nameId="cf_heston"/>
+                        </NameExpr>
+                        <NameExpr col="25" id="216" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="71">
+                            <Name col="25" id="217" line="71" nameId="x"/>
+                        </NameExpr>
+                        <NameExpr col="27" id="218" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="71">
+                            <Name col="27" id="219" line="71" nameId="vInst"/>
+                        </NameExpr>
+                        <NameExpr col="33" id="220" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="71">
+                            <Name col="33" id="221" line="71" nameId="vLong_low"/>
+                        </NameExpr>
+                        <NameExpr col="43" id="222" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="71">
+                            <Name col="43" id="223" line="71" nameId="kappa"/>
+                        </NameExpr>
+                        <NameExpr col="49" id="224" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="71">
+                            <Name col="49" id="225" line="71" nameId="omega"/>
+                        </NameExpr>
+                        <NameExpr col="55" id="226" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="71">
+                            <Name col="55" id="227" line="71" nameId="rho"/>
+                        </NameExpr>
+                        <NameExpr col="59" id="228" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="71">
+                            <Name col="59" id="229" line="71" nameId="t"/>
+                        </NameExpr>
+                        <IntLiteralExpr col="61" id="230" line="71" value="0"/>
+                    </ParameterizedExpr>
+                </LambdaExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="231" line="72" outputSuppressed="true">
+                <NameExpr col="1" id="232" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="72">
+                    <Name col="1" id="233" line="72" nameId="f_high"/>
+                </NameExpr>
+                <LambdaExpr col="11" id="234" line="72">
+                    <Name col="13" id="235" line="72" nameId="x"/>
+                    <ParameterizedExpr col="16" id="236" line="72">
+                        <NameExpr col="16" id="237" kind="LDVAR" kind_insensitive="null" kind_sensitive="null" line="72">
+                            <Name col="16" id="238" line="72" nameId="cf_heston"/>
+                        </NameExpr>
+                        <NameExpr col="26" id="239" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="72">
+                            <Name col="26" id="240" line="72" nameId="x"/>
+                        </NameExpr>
+                        <NameExpr col="28" id="241" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="72">
+                            <Name col="28" id="242" line="72" nameId="vInst"/>
+                        </NameExpr>
+                        <NameExpr col="34" id="243" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="72">
+                            <Name col="34" id="244" line="72" nameId="vLong_high"/>
+                        </NameExpr>
+                        <NameExpr col="45" id="245" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="72">
+                            <Name col="45" id="246" line="72" nameId="kappa"/>
+                        </NameExpr>
+                        <NameExpr col="51" id="247" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="72">
+                            <Name col="51" id="248" line="72" nameId="omega"/>
+                        </NameExpr>
+                        <NameExpr col="57" id="249" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="72">
+                            <Name col="57" id="250" line="72" nameId="rho"/>
+                        </NameExpr>
+                        <NameExpr col="61" id="251" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="72">
+                            <Name col="61" id="252" line="72" nameId="t"/>
+                        </NameExpr>
+                        <IntLiteralExpr col="63" id="253" line="72" value="0"/>
+                    </ParameterizedExpr>
+                </LambdaExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="254" line="74" outputSuppressed="true">
+                <NameExpr col="1" id="255" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="74">
+                    <Name col="1" id="256" line="74" nameId="y_low"/>
+                </NameExpr>
+                <ParameterizedExpr col="9" id="257" line="74">
+                    <NameExpr col="9" id="258" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="74">
+                        <Name col="9" id="259" line="74" nameId="fftdensity"/>
+                    </NameExpr>
+                    <NameExpr col="20" id="260" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="74">
+                        <Name col="20" id="261" line="74" nameId="f_low"/>
+                    </NameExpr>
+                    <NameExpr col="26" id="262" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="74">
+                        <Name col="26" id="263" line="74" nameId="a"/>
+                    </NameExpr>
+                    <NameExpr col="28" id="264" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="74">
+                        <Name col="28" id="265" line="74" nameId="N"/>
+                    </NameExpr>
+                </ParameterizedExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="266" line="75" outputSuppressed="true">
+                <NameExpr col="1" id="267" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="75">
+                    <Name col="1" id="268" line="75" nameId="y_high"/>
+                </NameExpr>
+                <ParameterizedExpr col="10" id="269" line="75">
+                    <NameExpr col="10" id="270" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="75">
+                        <Name col="10" id="271" line="75" nameId="fftdensity"/>
+                    </NameExpr>
+                    <NameExpr col="21" id="272" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="75">
+                        <Name col="21" id="273" line="75" nameId="f_high"/>
+                    </NameExpr>
+                    <NameExpr col="28" id="274" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="75">
+                        <Name col="28" id="275" line="75" nameId="a"/>
+                    </NameExpr>
+                    <NameExpr col="30" id="276" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="75">
+                        <Name col="30" id="277" line="75" nameId="N"/>
+                    </NameExpr>
+                </ParameterizedExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="278" line="77" outputSuppressed="true">
+                <NameExpr col="1" id="279" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="77">
+                    <Name col="1" id="280" line="77" nameId="legendname_low"/>
+                </NameExpr>
+                <StringLiteralExpr col="18" id="281" line="77" value="Changing \Theta low value"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="282" line="78" outputSuppressed="true">
+                <NameExpr col="1" id="283" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="78">
+                    <Name col="1" id="284" line="78" nameId="legendname_high"/>
+                </NameExpr>
+                <StringLiteralExpr col="19" id="285" line="78" value="Changing \Theta high value"/>
+            </AssignStmt>
+            <ExprStmt col="1" id="286" line="80" outputSuppressed="true">
+                <ParameterizedExpr col="1" id="287" line="80">
+                    <NameExpr col="1" id="288" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="80">
+                        <Name col="1" id="289" line="80" nameId="createfigure_density"/>
+                    </NameExpr>
+                    <NameExpr col="22" id="290" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="80">
+                        <Name col="22" id="291" line="80" nameId="x"/>
+                    </NameExpr>
+                    <NameExpr col="24" id="292" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="80">
+                        <Name col="24" id="293" line="80" nameId="y"/>
+                    </NameExpr>
+                    <NameExpr col="26" id="294" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="80">
+                        <Name col="26" id="295" line="80" nameId="y_low"/>
+                    </NameExpr>
+                    <NameExpr col="32" id="296" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="80">
+                        <Name col="32" id="297" line="80" nameId="y_high"/>
+                    </NameExpr>
+                    <NameExpr col="5" id="298" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="81">
+                        <Name col="5" id="299" line="81" nameId="figname"/>
+                    </NameExpr>
+                    <NameExpr col="14" id="300" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="81">
+                        <Name col="14" id="301" line="81" nameId="legendname"/>
+                    </NameExpr>
+                    <NameExpr col="25" id="302" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="81">
+                        <Name col="25" id="303" line="81" nameId="legendname_low"/>
+                    </NameExpr>
+                    <NameExpr col="40" id="304" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="81">
+                        <Name col="40" id="305" line="81" nameId="legendname_high"/>
+                    </NameExpr>
+                </ParameterizedExpr>
+            </ExprStmt>
+            <AssignStmt col="1" id="306" line="84" outputSuppressed="true">
+                <NameExpr col="1" id="307" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="84">
+                    <Name col="1" id="308" line="84" nameId="kappa_low"/>
+                </NameExpr>
+                <FPLiteralExpr col="13" id="309" line="84" value=".05"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="310" line="85" outputSuppressed="true">
+                <NameExpr col="1" id="311" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="85">
+                    <Name col="1" id="312" line="85" nameId="kappa_high"/>
+                </NameExpr>
+                <FPLiteralExpr col="14" id="313" line="85" value=".5"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="314" line="87" outputSuppressed="true">
+                <NameExpr col="1" id="315" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="87">
+                    <Name col="1" id="316" line="87" nameId="f_low"/>
+                </NameExpr>
+                <LambdaExpr col="9" id="317" line="87">
+                    <Name col="11" id="318" line="87" nameId="x"/>
+                    <ParameterizedExpr col="15" id="319" line="87">
+                        <NameExpr col="15" id="320" kind="LDVAR" kind_insensitive="null" kind_sensitive="null" line="87">
+                            <Name col="15" id="321" line="87" nameId="cf_heston"/>
+                        </NameExpr>
+                        <NameExpr col="25" id="322" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="87">
+                            <Name col="25" id="323" line="87" nameId="x"/>
+                        </NameExpr>
+                        <NameExpr col="27" id="324" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="87">
+                            <Name col="27" id="325" line="87" nameId="vInst"/>
+                        </NameExpr>
+                        <NameExpr col="33" id="326" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="87">
+                            <Name col="33" id="327" line="87" nameId="vLong"/>
+                        </NameExpr>
+                        <NameExpr col="39" id="328" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="87">
+                            <Name col="39" id="329" line="87" nameId="kappa_low"/>
+                        </NameExpr>
+                        <NameExpr col="49" id="330" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="87">
+                            <Name col="49" id="331" line="87" nameId="omega"/>
+                        </NameExpr>
+                        <NameExpr col="55" id="332" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="87">
+                            <Name col="55" id="333" line="87" nameId="rho"/>
+                        </NameExpr>
+                        <NameExpr col="59" id="334" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="87">
+                            <Name col="59" id="335" line="87" nameId="t"/>
+                        </NameExpr>
+                        <IntLiteralExpr col="61" id="336" line="87" value="0"/>
+                    </ParameterizedExpr>
+                </LambdaExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="337" line="88" outputSuppressed="true">
+                <NameExpr col="1" id="338" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="88">
+                    <Name col="1" id="339" line="88" nameId="f_high"/>
+                </NameExpr>
+                <LambdaExpr col="10" id="340" line="88">
+                    <Name col="12" id="341" line="88" nameId="x"/>
+                    <ParameterizedExpr col="16" id="342" line="88">
+                        <NameExpr col="16" id="343" kind="LDVAR" kind_insensitive="null" kind_sensitive="null" line="88">
+                            <Name col="16" id="344" line="88" nameId="cf_heston"/>
+                        </NameExpr>
+                        <NameExpr col="26" id="345" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="88">
+                            <Name col="26" id="346" line="88" nameId="x"/>
+                        </NameExpr>
+                        <NameExpr col="28" id="347" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="88">
+                            <Name col="28" id="348" line="88" nameId="vInst"/>
+                        </NameExpr>
+                        <NameExpr col="34" id="349" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="88">
+                            <Name col="34" id="350" line="88" nameId="vLong"/>
+                        </NameExpr>
+                        <NameExpr col="40" id="351" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="88">
+                            <Name col="40" id="352" line="88" nameId="kappa_high"/>
+                        </NameExpr>
+                        <NameExpr col="51" id="353" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="88">
+                            <Name col="51" id="354" line="88" nameId="omega"/>
+                        </NameExpr>
+                        <NameExpr col="57" id="355" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="88">
+                            <Name col="57" id="356" line="88" nameId="rho"/>
+                        </NameExpr>
+                        <NameExpr col="61" id="357" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="88">
+                            <Name col="61" id="358" line="88" nameId="t"/>
+                        </NameExpr>
+                        <IntLiteralExpr col="63" id="359" line="88" value="0"/>
+                    </ParameterizedExpr>
+                </LambdaExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="360" line="90" outputSuppressed="true">
+                <NameExpr col="1" id="361" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="90">
+                    <Name col="1" id="362" line="90" nameId="y_low"/>
+                </NameExpr>
+                <ParameterizedExpr col="9" id="363" line="90">
+                    <NameExpr col="9" id="364" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="90">
+                        <Name col="9" id="365" line="90" nameId="fftdensity"/>
+                    </NameExpr>
+                    <NameExpr col="20" id="366" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="90">
+                        <Name col="20" id="367" line="90" nameId="f_low"/>
+                    </NameExpr>
+                    <NameExpr col="26" id="368" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="90">
+                        <Name col="26" id="369" line="90" nameId="a"/>
+                    </NameExpr>
+                    <NameExpr col="28" id="370" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="90">
+                        <Name col="28" id="371" line="90" nameId="N"/>
+                    </NameExpr>
+                </ParameterizedExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="372" line="91" outputSuppressed="true">
+                <NameExpr col="1" id="373" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="91">
+                    <Name col="1" id="374" line="91" nameId="y_high"/>
+                </NameExpr>
+                <ParameterizedExpr col="10" id="375" line="91">
+                    <NameExpr col="10" id="376" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="91">
+                        <Name col="10" id="377" line="91" nameId="fftdensity"/>
+                    </NameExpr>
+                    <NameExpr col="21" id="378" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="91">
+                        <Name col="21" id="379" line="91" nameId="f_high"/>
+                    </NameExpr>
+                    <NameExpr col="28" id="380" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="91">
+                        <Name col="28" id="381" line="91" nameId="a"/>
+                    </NameExpr>
+                    <NameExpr col="30" id="382" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="91">
+                        <Name col="30" id="383" line="91" nameId="N"/>
+                    </NameExpr>
+                </ParameterizedExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="384" line="93" outputSuppressed="true">
+                <NameExpr col="1" id="385" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="93">
+                    <Name col="1" id="386" line="93" nameId="legendname_low"/>
+                </NameExpr>
+                <StringLiteralExpr col="18" id="387" line="93" value="Changing \kappa low value"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="388" line="94" outputSuppressed="true">
+                <NameExpr col="1" id="389" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="94">
+                    <Name col="1" id="390" line="94" nameId="legendname_high"/>
+                </NameExpr>
+                <StringLiteralExpr col="19" id="391" line="94" value="Changing \kappa high value"/>
+            </AssignStmt>
+            <ExprStmt col="1" id="392" line="96" outputSuppressed="true">
+                <ParameterizedExpr col="1" id="393" line="96">
+                    <NameExpr col="1" id="394" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="96">
+                        <Name col="1" id="395" line="96" nameId="createfigure_density"/>
+                    </NameExpr>
+                    <NameExpr col="22" id="396" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="96">
+                        <Name col="22" id="397" line="96" nameId="x"/>
+                    </NameExpr>
+                    <NameExpr col="24" id="398" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="96">
+                        <Name col="24" id="399" line="96" nameId="y"/>
+                    </NameExpr>
+                    <NameExpr col="26" id="400" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="96">
+                        <Name col="26" id="401" line="96" nameId="y_low"/>
+                    </NameExpr>
+                    <NameExpr col="32" id="402" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="96">
+                        <Name col="32" id="403" line="96" nameId="y_high"/>
+                    </NameExpr>
+                    <NameExpr col="5" id="404" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="97">
+                        <Name col="5" id="405" line="97" nameId="figname"/>
+                    </NameExpr>
+                    <NameExpr col="14" id="406" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="97">
+                        <Name col="14" id="407" line="97" nameId="legendname"/>
+                    </NameExpr>
+                    <NameExpr col="25" id="408" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="97">
+                        <Name col="25" id="409" line="97" nameId="legendname_low"/>
+                    </NameExpr>
+                    <NameExpr col="40" id="410" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="97">
+                        <Name col="40" id="411" line="97" nameId="legendname_high"/>
+                    </NameExpr>
+                </ParameterizedExpr>
+            </ExprStmt>
+            <AssignStmt col="1" id="412" line="99" outputSuppressed="true">
+                <NameExpr col="1" id="413" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="99">
+                    <Name col="1" id="414" line="99" nameId="omega_low"/>
+                </NameExpr>
+                <FPLiteralExpr col="13" id="415" line="99" value=".1"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="416" line="100" outputSuppressed="true">
+                <NameExpr col="1" id="417" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="100">
+                    <Name col="1" id="418" line="100" nameId="omega_high"/>
+                </NameExpr>
+                <FPLiteralExpr col="14" id="419" line="100" value=".3"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="420" line="102" outputSuppressed="true">
+                <NameExpr col="1" id="421" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="102">
+                    <Name col="1" id="422" line="102" nameId="f_low"/>
+                </NameExpr>
+                <LambdaExpr col="9" id="423" line="102">
+                    <Name col="11" id="424" line="102" nameId="x"/>
+                    <ParameterizedExpr col="15" id="425" line="102">
+                        <NameExpr col="15" id="426" kind="LDVAR" kind_insensitive="null" kind_sensitive="null" line="102">
+                            <Name col="15" id="427" line="102" nameId="cf_heston"/>
+                        </NameExpr>
+                        <NameExpr col="25" id="428" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="102">
+                            <Name col="25" id="429" line="102" nameId="x"/>
+                        </NameExpr>
+                        <NameExpr col="27" id="430" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="102">
+                            <Name col="27" id="431" line="102" nameId="vInst"/>
+                        </NameExpr>
+                        <NameExpr col="33" id="432" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="102">
+                            <Name col="33" id="433" line="102" nameId="vLong"/>
+                        </NameExpr>
+                        <NameExpr col="39" id="434" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="102">
+                            <Name col="39" id="435" line="102" nameId="kappa"/>
+                        </NameExpr>
+                        <NameExpr col="45" id="436" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="102">
+                            <Name col="45" id="437" line="102" nameId="omega_low"/>
+                        </NameExpr>
+                        <NameExpr col="55" id="438" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="102">
+                            <Name col="55" id="439" line="102" nameId="rho"/>
+                        </NameExpr>
+                        <NameExpr col="59" id="440" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="102">
+                            <Name col="59" id="441" line="102" nameId="t"/>
+                        </NameExpr>
+                        <IntLiteralExpr col="61" id="442" line="102" value="0"/>
+                    </ParameterizedExpr>
+                </LambdaExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="443" line="103" outputSuppressed="true">
+                <NameExpr col="1" id="444" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="103">
+                    <Name col="1" id="445" line="103" nameId="f_high"/>
+                </NameExpr>
+                <LambdaExpr col="11" id="446" line="103">
+                    <Name col="13" id="447" line="103" nameId="x"/>
+                    <ParameterizedExpr col="16" id="448" line="103">
+                        <NameExpr col="16" id="449" kind="LDVAR" kind_insensitive="null" kind_sensitive="null" line="103">
+                            <Name col="16" id="450" line="103" nameId="cf_heston"/>
+                        </NameExpr>
+                        <NameExpr col="26" id="451" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="103">
+                            <Name col="26" id="452" line="103" nameId="x"/>
+                        </NameExpr>
+                        <NameExpr col="28" id="453" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="103">
+                            <Name col="28" id="454" line="103" nameId="vInst"/>
+                        </NameExpr>
+                        <NameExpr col="34" id="455" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="103">
+                            <Name col="34" id="456" line="103" nameId="vLong"/>
+                        </NameExpr>
+                        <NameExpr col="40" id="457" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="103">
+                            <Name col="40" id="458" line="103" nameId="kappa"/>
+                        </NameExpr>
+                        <NameExpr col="46" id="459" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="103">
+                            <Name col="46" id="460" line="103" nameId="omega_high"/>
+                        </NameExpr>
+                        <NameExpr col="57" id="461" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="103">
+                            <Name col="57" id="462" line="103" nameId="rho"/>
+                        </NameExpr>
+                        <NameExpr col="61" id="463" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="103">
+                            <Name col="61" id="464" line="103" nameId="t"/>
+                        </NameExpr>
+                        <IntLiteralExpr col="63" id="465" line="103" value="0"/>
+                    </ParameterizedExpr>
+                </LambdaExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="466" line="106" outputSuppressed="true">
+                <NameExpr col="1" id="467" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="106">
+                    <Name col="1" id="468" line="106" nameId="y_low"/>
+                </NameExpr>
+                <ParameterizedExpr col="9" id="469" line="106">
+                    <NameExpr col="9" id="470" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="106">
+                        <Name col="9" id="471" line="106" nameId="fftdensity"/>
+                    </NameExpr>
+                    <NameExpr col="20" id="472" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="106">
+                        <Name col="20" id="473" line="106" nameId="f_low"/>
+                    </NameExpr>
+                    <NameExpr col="26" id="474" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="106">
+                        <Name col="26" id="475" line="106" nameId="a"/>
+                    </NameExpr>
+                    <NameExpr col="28" id="476" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="106">
+                        <Name col="28" id="477" line="106" nameId="N"/>
+                    </NameExpr>
+                </ParameterizedExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="478" line="107" outputSuppressed="true">
+                <NameExpr col="1" id="479" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="107">
+                    <Name col="1" id="480" line="107" nameId="y_high"/>
+                </NameExpr>
+                <ParameterizedExpr col="10" id="481" line="107">
+                    <NameExpr col="10" id="482" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="107">
+                        <Name col="10" id="483" line="107" nameId="fftdensity"/>
+                    </NameExpr>
+                    <NameExpr col="21" id="484" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="107">
+                        <Name col="21" id="485" line="107" nameId="f_high"/>
+                    </NameExpr>
+                    <NameExpr col="28" id="486" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="107">
+                        <Name col="28" id="487" line="107" nameId="a"/>
+                    </NameExpr>
+                    <NameExpr col="30" id="488" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="107">
+                        <Name col="30" id="489" line="107" nameId="N"/>
+                    </NameExpr>
+                </ParameterizedExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="490" line="109" outputSuppressed="true">
+                <NameExpr col="1" id="491" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="109">
+                    <Name col="1" id="492" line="109" nameId="legendname_low"/>
+                </NameExpr>
+                <StringLiteralExpr col="18" id="493" line="109" value="Changing \nu low value"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="494" line="110" outputSuppressed="true">
+                <NameExpr col="1" id="495" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="110">
+                    <Name col="1" id="496" line="110" nameId="legendname_high"/>
+                </NameExpr>
+                <StringLiteralExpr col="19" id="497" line="110" value="Changing \nu high value"/>
+            </AssignStmt>
+            <ExprStmt col="1" id="498" line="112" outputSuppressed="true">
+                <ParameterizedExpr col="1" id="499" line="112">
+                    <NameExpr col="1" id="500" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="112">
+                        <Name col="1" id="501" line="112" nameId="createfigure_density"/>
+                    </NameExpr>
+                    <NameExpr col="22" id="502" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="112">
+                        <Name col="22" id="503" line="112" nameId="x"/>
+                    </NameExpr>
+                    <NameExpr col="24" id="504" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="112">
+                        <Name col="24" id="505" line="112" nameId="y"/>
+                    </NameExpr>
+                    <NameExpr col="26" id="506" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="112">
+                        <Name col="26" id="507" line="112" nameId="y_low"/>
+                    </NameExpr>
+                    <NameExpr col="32" id="508" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="112">
+                        <Name col="32" id="509" line="112" nameId="y_high"/>
+                    </NameExpr>
+                    <NameExpr col="5" id="510" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="113">
+                        <Name col="5" id="511" line="113" nameId="figname"/>
+                    </NameExpr>
+                    <NameExpr col="14" id="512" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="113">
+                        <Name col="14" id="513" line="113" nameId="legendname"/>
+                    </NameExpr>
+                    <NameExpr col="25" id="514" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="113">
+                        <Name col="25" id="515" line="113" nameId="legendname_low"/>
+                    </NameExpr>
+                    <NameExpr col="40" id="516" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="113">
+                        <Name col="40" id="517" line="113" nameId="legendname_high"/>
+                    </NameExpr>
+                </ParameterizedExpr>
+            </ExprStmt>
+            <AssignStmt col="1" id="518" line="115" outputSuppressed="true">
+                <NameExpr col="1" id="519" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="115">
+                    <Name col="1" id="520" line="115" nameId="rho_low"/>
+                </NameExpr>
+                <UMinusExpr col="11" id="521" line="115">
+                    <FPLiteralExpr col="12" id="522" line="115" value=".8"/>
+                </UMinusExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="523" line="116" outputSuppressed="true">
+                <NameExpr col="1" id="524" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="116">
+                    <Name col="1" id="525" line="116" nameId="rho_high"/>
+                </NameExpr>
+                <FPLiteralExpr col="12" id="526" line="116" value=".8"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="527" line="118" outputSuppressed="true">
+                <NameExpr col="1" id="528" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="118">
+                    <Name col="1" id="529" line="118" nameId="f_low"/>
+                </NameExpr>
+                <LambdaExpr col="10" id="530" line="118">
+                    <Name col="12" id="531" line="118" nameId="x"/>
+                    <ParameterizedExpr col="15" id="532" line="118">
+                        <NameExpr col="15" id="533" kind="LDVAR" kind_insensitive="null" kind_sensitive="null" line="118">
+                            <Name col="15" id="534" line="118" nameId="cf_heston"/>
+                        </NameExpr>
+                        <NameExpr col="25" id="535" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="118">
+                            <Name col="25" id="536" line="118" nameId="x"/>
+                        </NameExpr>
+                        <NameExpr col="27" id="537" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="118">
+                            <Name col="27" id="538" line="118" nameId="vInst"/>
+                        </NameExpr>
+                        <NameExpr col="33" id="539" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="118">
+                            <Name col="33" id="540" line="118" nameId="vLong"/>
+                        </NameExpr>
+                        <NameExpr col="39" id="541" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="118">
+                            <Name col="39" id="542" line="118" nameId="kappa"/>
+                        </NameExpr>
+                        <NameExpr col="45" id="543" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="118">
+                            <Name col="45" id="544" line="118" nameId="omega"/>
+                        </NameExpr>
+                        <NameExpr col="51" id="545" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="118">
+                            <Name col="51" id="546" line="118" nameId="rho_low"/>
+                        </NameExpr>
+                        <NameExpr col="59" id="547" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="118">
+                            <Name col="59" id="548" line="118" nameId="t"/>
+                        </NameExpr>
+                        <IntLiteralExpr col="61" id="549" line="118" value="0"/>
+                    </ParameterizedExpr>
+                </LambdaExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="550" line="119" outputSuppressed="true">
+                <NameExpr col="1" id="551" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="119">
+                    <Name col="1" id="552" line="119" nameId="f_high"/>
+                </NameExpr>
+                <LambdaExpr col="11" id="553" line="119">
+                    <Name col="13" id="554" line="119" nameId="x"/>
+                    <ParameterizedExpr col="16" id="555" line="119">
+                        <NameExpr col="16" id="556" kind="LDVAR" kind_insensitive="null" kind_sensitive="null" line="119">
+                            <Name col="16" id="557" line="119" nameId="cf_heston"/>
+                        </NameExpr>
+                        <NameExpr col="26" id="558" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="119">
+                            <Name col="26" id="559" line="119" nameId="x"/>
+                        </NameExpr>
+                        <NameExpr col="28" id="560" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="119">
+                            <Name col="28" id="561" line="119" nameId="vInst"/>
+                        </NameExpr>
+                        <NameExpr col="34" id="562" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="119">
+                            <Name col="34" id="563" line="119" nameId="vLong"/>
+                        </NameExpr>
+                        <NameExpr col="40" id="564" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="119">
+                            <Name col="40" id="565" line="119" nameId="kappa"/>
+                        </NameExpr>
+                        <NameExpr col="46" id="566" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="119">
+                            <Name col="46" id="567" line="119" nameId="omega"/>
+                        </NameExpr>
+                        <NameExpr col="52" id="568" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="119">
+                            <Name col="52" id="569" line="119" nameId="rho_high"/>
+                        </NameExpr>
+                        <NameExpr col="61" id="570" kind="VAR" kind_insensitive="null" kind_sensitive="null" line="119">
+                            <Name col="61" id="571" line="119" nameId="t"/>
+                        </NameExpr>
+                        <IntLiteralExpr col="63" id="572" line="119" value="0"/>
+                    </ParameterizedExpr>
+                </LambdaExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="573" line="121" outputSuppressed="true">
+                <NameExpr col="1" id="574" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="121">
+                    <Name col="1" id="575" line="121" nameId="y_low"/>
+                </NameExpr>
+                <ParameterizedExpr col="9" id="576" line="121">
+                    <NameExpr col="9" id="577" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="121">
+                        <Name col="9" id="578" line="121" nameId="fftdensity"/>
+                    </NameExpr>
+                    <NameExpr col="20" id="579" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="121">
+                        <Name col="20" id="580" line="121" nameId="f_low"/>
+                    </NameExpr>
+                    <NameExpr col="26" id="581" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="121">
+                        <Name col="26" id="582" line="121" nameId="a"/>
+                    </NameExpr>
+                    <NameExpr col="28" id="583" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="121">
+                        <Name col="28" id="584" line="121" nameId="N"/>
+                    </NameExpr>
+                </ParameterizedExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="585" line="122" outputSuppressed="true">
+                <NameExpr col="1" id="586" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="122">
+                    <Name col="1" id="587" line="122" nameId="y_high"/>
+                </NameExpr>
+                <ParameterizedExpr col="10" id="588" line="122">
+                    <NameExpr col="10" id="589" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="122">
+                        <Name col="10" id="590" line="122" nameId="fftdensity"/>
+                    </NameExpr>
+                    <NameExpr col="21" id="591" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="122">
+                        <Name col="21" id="592" line="122" nameId="f_high"/>
+                    </NameExpr>
+                    <NameExpr col="28" id="593" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="122">
+                        <Name col="28" id="594" line="122" nameId="a"/>
+                    </NameExpr>
+                    <NameExpr col="30" id="595" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="122">
+                        <Name col="30" id="596" line="122" nameId="N"/>
+                    </NameExpr>
+                </ParameterizedExpr>
+            </AssignStmt>
+            <AssignStmt col="1" id="597" line="124" outputSuppressed="true">
+                <NameExpr col="1" id="598" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="124">
+                    <Name col="1" id="599" line="124" nameId="legendname_low"/>
+                </NameExpr>
+                <StringLiteralExpr col="18" id="600" line="124" value="Changing \rho low value"/>
+            </AssignStmt>
+            <AssignStmt col="1" id="601" line="125" outputSuppressed="true">
+                <NameExpr col="1" id="602" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="125">
+                    <Name col="1" id="603" line="125" nameId="legendname_high"/>
+                </NameExpr>
+                <StringLiteralExpr col="19" id="604" line="125" value="Changing \rho high value"/>
+            </AssignStmt>
+            <ExprStmt col="1" id="605" line="127" outputSuppressed="true">
+                <ParameterizedExpr col="1" id="606" line="127">
+                    <NameExpr col="1" id="607" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="127">
+                        <Name col="1" id="608" line="127" nameId="createfigure_density"/>
+                    </NameExpr>
+                    <NameExpr col="22" id="609" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="127">
+                        <Name col="22" id="610" line="127" nameId="x"/>
+                    </NameExpr>
+                    <NameExpr col="24" id="611" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="127">
+                        <Name col="24" id="612" line="127" nameId="y"/>
+                    </NameExpr>
+                    <NameExpr col="26" id="613" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="127">
+                        <Name col="26" id="614" line="127" nameId="y_low"/>
+                    </NameExpr>
+                    <NameExpr col="32" id="615" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="127">
+                        <Name col="32" id="616" line="127" nameId="y_high"/>
+                    </NameExpr>
+                    <NameExpr col="5" id="617" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="128">
+                        <Name col="5" id="618" line="128" nameId="figname"/>
+                    </NameExpr>
+                    <NameExpr col="14" id="619" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="128">
+                        <Name col="14" id="620" line="128" nameId="legendname"/>
+                    </NameExpr>
+                    <NameExpr col="25" id="621" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="128">
+                        <Name col="25" id="622" line="128" nameId="legendname_low"/>
+                    </NameExpr>
+                    <NameExpr col="40" id="623" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="128">
+                        <Name col="40" id="624" line="128" nameId="legendname_high"/>
+                    </NameExpr>
+                </ParameterizedExpr>
+            </ExprStmt>
+            <ExprStmt col="1" id="625" line="131" outputSuppressed="true">
+                <NameExpr col="1" id="626" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="131">
+                    <Name col="1" id="627" line="131" nameId="clear"/>
+                </NameExpr>
+            </ExprStmt>
+            <ExprStmt col="8" id="628" line="131" outputSuppressed="true">
+                <NameExpr col="8" id="629" kind="LDVAR" kind_insensitive="LDVAR" kind_sensitive="LDVAR" line="131">
+                    <Name col="8" id="630" line="131" nameId="clc"/>
+                </NameExpr>
+            </ExprStmt>
+        </StmtList>
+    </Script>
+</CompilationUnits>

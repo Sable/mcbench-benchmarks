@@ -1,0 +1,36 @@
+clear 
+close all
+
+%create data
+x1=0:20;
+x2=-10:15;
+x3=10:25;
+
+y1=(10*sin(x1)).^6;
+y2=cos(x2);
+y3=sin(x3).*cos(x3);
+
+%create errors
+y2err = 0.1*abs(y2);
+y3err_lower = 0.2*ones(size(y3));
+y3err_upper = 0.4*ones(size(y3));
+
+%create Struct 
+M.data1 = [x1; y1];
+M.data2 = [x2; y2; y2err];
+M.data3 = [x3; y3; y3err_lower; y3err_upper];
+
+%Plot
+figure(1)
+[ax,hLine,hText] = myplotyy(M,...
+    'Xlabel','x',...
+    'Ylabel',{'y1=(10*sin(x))^6' 'y2=cos(x)' 'y3=sin(x)*cos(x)'},...
+    'YLabelRotation',[90 -90 90],...
+    'ScaleFactor',[0.25 0.4 0.6],...
+    'AxesShift',[0 0.2 0.4],...
+    'BoolYDirReversed',[0 1 0],...
+    'BoolLineLabel',2,...
+    'boolYScaleLog',[1 0 0],...
+    'boolGGInt',0,...
+    'LineStyle',{'-' '--' ':'},...
+    'LineColors',lines(3));

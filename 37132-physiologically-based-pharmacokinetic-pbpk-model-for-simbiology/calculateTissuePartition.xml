@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<CompilationUnits id="0">
+    <FunctionList col="1" fullpath="/Users/isbadawi/mcbench-benchmarks/37132-physiologically-based-pharmacokinetic-pbpk-model-for-simbiology/calculateTissuePartition.m" id="1" line="15">
+        <Function col="1" id="2" line="15">
+            <Name col="41" id="3" line="15" nameId="calculateTissuePartition"/>
+            <InputParamList>
+                <Name col="5" id="4" line="16" nameId="DrugIsBase"/>
+                <Name col="17" id="5" line="16" nameId="DrugIsAcid"/>
+                <Name col="29" id="6" line="16" nameId="DrugIsNeutral"/>
+                <Name col="5" id="7" line="17" nameId="DrugpKa"/>
+                <Name col="14" id="8" line="17" nameId="DrugpKb"/>
+                <Name col="23" id="9" line="17" nameId="DrugLogP"/>
+                <Name col="33" id="10" line="17" nameId="DrugBloodPlasmaRatio"/>
+                <Name col="55" id="11" line="17" nameId="DrugFractionUnbound"/>
+                <Name col="5" id="12" line="18" nameId="pHBC"/>
+                <Name col="11" id="13" line="18" nameId="pHIW"/>
+                <Name col="17" id="14" line="18" nameId="pHP"/>
+                <Name col="22" id="15" line="18" nameId="fracEW"/>
+                <Name col="30" id="16" line="18" nameId="fracIW"/>
+                <Name col="38" id="17" line="18" nameId="fracIWBC"/>
+                <Name col="48" id="18" line="18" nameId="fracNLBC"/>
+                <Name col="58" id="19" line="18" nameId="fracNPBC"/>
+                <Name col="68" id="20" line="18" nameId="fracNL"/>
+                <Name col="76" id="21" line="18" nameId="fracNP"/>
+                <Name col="84" id="22" line="18" nameId="fracNLP"/>
+                <Name col="93" id="23" line="18" nameId="fracNPP"/>
+                <Name col="102" id="24" line="18" nameId="CAcidicPhospholipidsT"/>
+                <Name col="125" id="25" line="18" nameId="CAcidicPhospholipidsBC"/>
+                <Name col="149" id="26" line="18" nameId="Hematocrit"/>
+                <Name col="161" id="27" line="18" nameId="TissuetoPlasmaProteinRatio"/>
+            </InputParamList>
+            <OutputParamList>
+                <Name col="11" id="28" line="15" nameId="TissuePartitionCoefficient"/>
+            </OutputParamList>
+            <StmtList>
+                <AssignStmt col="1" id="29" line="6" outputSuppressed="true">
+                    <NameExpr col="1" id="30" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="6">
+                        <Name col="1" id="31" line="6" nameId="DrugP"/>
+                    </NameExpr>
+                    <MPowExpr col="9" id="32" line="6">
+                        <IntLiteralExpr col="9" id="33" line="6" value="10"/>
+                        <NameExpr col="12" id="34" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="6">
+                            <Name col="12" id="35" line="6" nameId="DrugLogP"/>
+                        </NameExpr>
+                    </MPowExpr>
+                </AssignStmt>
+                <AssignStmt col="1" id="36" line="8" outputSuppressed="true">
+                    <NameExpr col="1" id="37" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="8">
+                        <Name col="1" id="38" line="8" nameId="KpuBC"/>
+                    </NameExpr>
+                    <MDivExpr col="9" id="39" line="8">
+                        <PlusExpr col="9" id="40" line="8">
+                            <MinusExpr col="10" id="41" line="8">
+                                <NameExpr col="10" id="42" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="8">
+                                    <Name col="10" id="43" line="8" nameId="Hematocrit"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="23" id="44" line="8" value="1"/>
+                            </MinusExpr>
+                            <NameExpr col="27" id="45" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="8">
+                                <Name col="27" id="46" line="8" nameId="DrugBloodPlasmaRatio"/>
+                            </NameExpr>
+                        </PlusExpr>
+                        <MTimesExpr col="49" id="47" line="8">
+                            <NameExpr col="50" id="48" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="8">
+                                <Name col="50" id="49" line="8" nameId="DrugFractionUnbound"/>
+                            </NameExpr>
+                            <NameExpr col="72" id="50" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="8">
+                                <Name col="72" id="51" line="8" nameId="Hematocrit"/>
+                            </NameExpr>
+                        </MTimesExpr>
+                    </MDivExpr>
+                </AssignStmt>
+                <AssignStmt col="1" id="52" line="10" outputSuppressed="true">
+                    <NameExpr col="1" id="53" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="10">
+                        <Name col="1" id="54" line="10" nameId="KaBC"/>
+                    </NameExpr>
+                    <MTimesExpr col="8" id="55" line="10">
+                        <MinusExpr col="8" id="56" line="10">
+                            <MinusExpr col="9" id="57" line="10">
+                                <NameExpr col="9" id="58" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="10">
+                                    <Name col="9" id="59" line="10" nameId="KpuBC"/>
+                                </NameExpr>
+                                <MTimesExpr col="17" id="60" line="10">
+                                    <MDivExpr col="18" id="61" line="10">
+                                        <PlusExpr col="18" id="62" line="10">
+                                            <IntLiteralExpr col="19" id="63" line="10" value="1"/>
+                                            <MPowExpr col="23" id="64" line="10">
+                                                <IntLiteralExpr col="23" id="65" line="10" value="10"/>
+                                                <MinusExpr col="26" id="66" line="10">
+                                                    <NameExpr col="27" id="67" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="10">
+                                                        <Name col="27" id="68" line="10" nameId="DrugpKa"/>
+                                                    </NameExpr>
+                                                    <NameExpr col="37" id="69" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="10">
+                                                        <Name col="37" id="70" line="10" nameId="pHBC"/>
+                                                    </NameExpr>
+                                                </MinusExpr>
+                                            </MPowExpr>
+                                        </PlusExpr>
+                                        <PlusExpr col="44" id="71" line="10">
+                                            <IntLiteralExpr col="45" id="72" line="10" value="1"/>
+                                            <MPowExpr col="47" id="73" line="10">
+                                                <IntLiteralExpr col="47" id="74" line="10" value="10"/>
+                                                <MinusExpr col="50" id="75" line="10">
+                                                    <NameExpr col="51" id="76" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="10">
+                                                        <Name col="51" id="77" line="10" nameId="DrugpKa"/>
+                                                    </NameExpr>
+                                                    <NameExpr col="61" id="78" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="10">
+                                                        <Name col="61" id="79" line="10" nameId="pHP"/>
+                                                    </NameExpr>
+                                                </MinusExpr>
+                                            </MPowExpr>
+                                        </PlusExpr>
+                                    </MDivExpr>
+                                    <NameExpr col="69" id="80" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="10">
+                                        <Name col="69" id="81" line="10" nameId="fracIWBC"/>
+                                    </NameExpr>
+                                </MTimesExpr>
+                            </MinusExpr>
+                            <MDivExpr col="9" id="82" line="11">
+                                <PlusExpr col="10" id="83" line="11">
+                                    <MTimesExpr col="11" id="84" line="11">
+                                        <NameExpr col="11" id="85" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="11">
+                                            <Name col="11" id="86" line="11" nameId="DrugP"/>
+                                        </NameExpr>
+                                        <NameExpr col="19" id="87" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="11">
+                                            <Name col="19" id="88" line="11" nameId="fracNLBC"/>
+                                        </NameExpr>
+                                    </MTimesExpr>
+                                    <MTimesExpr col="30" id="89" line="11">
+                                        <PlusExpr col="30" id="90" line="11">
+                                            <MTimesExpr col="31" id="91" line="11">
+                                                <FPLiteralExpr col="31" id="92" line="11" value="0.3"/>
+                                                <NameExpr col="36" id="93" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="11">
+                                                    <Name col="36" id="94" line="11" nameId="DrugP"/>
+                                                </NameExpr>
+                                            </MTimesExpr>
+                                            <FPLiteralExpr col="44" id="95" line="11" value="0.7"/>
+                                        </PlusExpr>
+                                        <NameExpr col="51" id="96" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="11">
+                                            <Name col="51" id="97" line="11" nameId="fracNPBC"/>
+                                        </NameExpr>
+                                    </MTimesExpr>
+                                </PlusExpr>
+                                <PlusExpr col="61" id="98" line="11">
+                                    <IntLiteralExpr col="62" id="99" line="11" value="1"/>
+                                    <MPowExpr col="64" id="100" line="11">
+                                        <IntLiteralExpr col="64" id="101" line="11" value="10"/>
+                                        <MinusExpr col="67" id="102" line="11">
+                                            <NameExpr col="68" id="103" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="11">
+                                                <Name col="68" id="104" line="11" nameId="DrugpKa"/>
+                                            </NameExpr>
+                                            <NameExpr col="76" id="105" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="11">
+                                                <Name col="76" id="106" line="11" nameId="pHP"/>
+                                            </NameExpr>
+                                        </MinusExpr>
+                                    </MPowExpr>
+                                </PlusExpr>
+                            </MDivExpr>
+                        </MinusExpr>
+                        <MDivExpr col="9" id="107" line="12">
+                            <PlusExpr col="10" id="108" line="12">
+                                <IntLiteralExpr col="11" id="109" line="12" value="1"/>
+                                <MPowExpr col="13" id="110" line="12">
+                                    <IntLiteralExpr col="13" id="111" line="12" value="10"/>
+                                    <MinusExpr col="16" id="112" line="12">
+                                        <NameExpr col="17" id="113" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="12">
+                                            <Name col="17" id="114" line="12" nameId="DrugpKa"/>
+                                        </NameExpr>
+                                        <NameExpr col="25" id="115" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="12">
+                                            <Name col="25" id="116" line="12" nameId="pHP"/>
+                                        </NameExpr>
+                                    </MinusExpr>
+                                </MPowExpr>
+                            </PlusExpr>
+                            <MTimesExpr col="31" id="117" line="12">
+                                <NameExpr col="32" id="118" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="12">
+                                    <Name col="32" id="119" line="12" nameId="CAcidicPhospholipidsBC"/>
+                                </NameExpr>
+                                <MPowExpr col="57" id="120" line="12">
+                                    <IntLiteralExpr col="57" id="121" line="12" value="10"/>
+                                    <MinusExpr col="60" id="122" line="12">
+                                        <NameExpr col="61" id="123" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="12">
+                                            <Name col="61" id="124" line="12" nameId="DrugpKa"/>
+                                        </NameExpr>
+                                        <NameExpr col="71" id="125" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="12">
+                                            <Name col="71" id="126" line="12" nameId="pHBC"/>
+                                        </NameExpr>
+                                    </MinusExpr>
+                                </MPowExpr>
+                            </MTimesExpr>
+                        </MDivExpr>
+                    </MTimesExpr>
+                </AssignStmt>
+                <IfStmt col="1" id="127" line="18">
+                    <IfBlock col="1" id="128" line="18">
+                        <NameExpr col="4" id="129" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="18">
+                            <Name col="4" id="130" line="18" nameId="DrugIsNeutral"/>
+                        </NameExpr>
+                        <StmtList>
+                            <AssignStmt col="5" id="131" line="20" outputSuppressed="true">
+                                <NameExpr col="5" id="132" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="20">
+                                    <Name col="5" id="133" line="20" nameId="facX"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="12" id="134" line="20" value="1"/>
+                            </AssignStmt>
+                            <AssignStmt col="15" id="135" line="20" outputSuppressed="true">
+                                <NameExpr col="15" id="136" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="20">
+                                    <Name col="15" id="137" line="20" nameId="facY"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="22" id="138" line="20" value="1"/>
+                            </AssignStmt>
+                        </StmtList>
+                    </IfBlock>
+                    <IfBlock col="1" id="139" line="21">
+                        <ShortCircuitAndExpr col="8" id="140" line="21">
+                            <NameExpr col="8" id="141" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="21">
+                                <Name col="8" id="142" line="21" nameId="DrugIsBase"/>
+                            </NameExpr>
+                            <NameExpr col="22" id="143" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="21">
+                                <Name col="22" id="144" line="21" nameId="DrugIsAcid"/>
+                            </NameExpr>
+                        </ShortCircuitAndExpr>
+                        <StmtList>
+                            <AssignStmt col="5" id="145" line="22" outputSuppressed="true">
+                                <NameExpr col="5" id="146" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="22">
+                                    <Name col="5" id="147" line="22" nameId="facX"/>
+                                </NameExpr>
+                                <PlusExpr col="12" id="148" line="22">
+                                    <PlusExpr col="12" id="149" line="22">
+                                        <IntLiteralExpr col="12" id="150" line="22" value="1"/>
+                                        <MPowExpr col="16" id="151" line="22">
+                                            <IntLiteralExpr col="16" id="152" line="22" value="10"/>
+                                            <MinusExpr col="19" id="153" line="22">
+                                                <MinusExpr col="20" id="154" line="22">
+                                                    <IntLiteralExpr col="20" id="155" line="22" value="14"/>
+                                                    <NameExpr col="23" id="156" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="22">
+                                                        <Name col="23" id="157" line="22" nameId="DrugpKb"/>
+                                                    </NameExpr>
+                                                </MinusExpr>
+                                                <NameExpr col="33" id="158" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="22">
+                                                    <Name col="33" id="159" line="22" nameId="pHIW"/>
+                                                </NameExpr>
+                                            </MinusExpr>
+                                        </MPowExpr>
+                                    </PlusExpr>
+                                    <MPowExpr col="41" id="160" line="22">
+                                        <IntLiteralExpr col="41" id="161" line="22" value="10"/>
+                                        <MinusExpr col="44" id="162" line="22">
+                                            <NameExpr col="45" id="163" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="22">
+                                                <Name col="45" id="164" line="22" nameId="pHIW"/>
+                                            </NameExpr>
+                                            <NameExpr col="52" id="165" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="22">
+                                                <Name col="52" id="166" line="22" nameId="DrugpKa"/>
+                                            </NameExpr>
+                                        </MinusExpr>
+                                    </MPowExpr>
+                                </PlusExpr>
+                            </AssignStmt>
+                            <AssignStmt col="5" id="167" line="23" outputSuppressed="true">
+                                <NameExpr col="5" id="168" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="23">
+                                    <Name col="5" id="169" line="23" nameId="facY"/>
+                                </NameExpr>
+                                <PlusExpr col="12" id="170" line="23">
+                                    <PlusExpr col="12" id="171" line="23">
+                                        <IntLiteralExpr col="12" id="172" line="23" value="1"/>
+                                        <MPowExpr col="16" id="173" line="23">
+                                            <IntLiteralExpr col="16" id="174" line="23" value="10"/>
+                                            <MinusExpr col="19" id="175" line="23">
+                                                <MinusExpr col="20" id="176" line="23">
+                                                    <IntLiteralExpr col="20" id="177" line="23" value="14"/>
+                                                    <NameExpr col="23" id="178" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="23">
+                                                        <Name col="23" id="179" line="23" nameId="DrugpKb"/>
+                                                    </NameExpr>
+                                                </MinusExpr>
+                                                <NameExpr col="33" id="180" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="23">
+                                                    <Name col="33" id="181" line="23" nameId="pHP"/>
+                                                </NameExpr>
+                                            </MinusExpr>
+                                        </MPowExpr>
+                                    </PlusExpr>
+                                    <MPowExpr col="40" id="182" line="23">
+                                        <IntLiteralExpr col="40" id="183" line="23" value="10"/>
+                                        <MinusExpr col="43" id="184" line="23">
+                                            <NameExpr col="44" id="185" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="23">
+                                                <Name col="44" id="186" line="23" nameId="pHP"/>
+                                            </NameExpr>
+                                            <NameExpr col="50" id="187" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="23">
+                                                <Name col="50" id="188" line="23" nameId="DrugpKa"/>
+                                            </NameExpr>
+                                        </MinusExpr>
+                                    </MPowExpr>
+                                </PlusExpr>
+                            </AssignStmt>
+                        </StmtList>
+                    </IfBlock>
+                    <IfBlock col="1" id="189" line="24">
+                        <NameExpr col="8" id="190" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="24">
+                            <Name col="8" id="191" line="24" nameId="DrugIsAcid"/>
+                        </NameExpr>
+                        <StmtList>
+                            <AssignStmt col="5" id="192" line="25" outputSuppressed="true">
+                                <NameExpr col="5" id="193" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="25">
+                                    <Name col="5" id="194" line="25" nameId="facX"/>
+                                </NameExpr>
+                                <PlusExpr col="12" id="195" line="25">
+                                    <IntLiteralExpr col="12" id="196" line="25" value="1"/>
+                                    <MPowExpr col="16" id="197" line="25">
+                                        <IntLiteralExpr col="16" id="198" line="25" value="10"/>
+                                        <MinusExpr col="19" id="199" line="25">
+                                            <NameExpr col="20" id="200" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="25">
+                                                <Name col="20" id="201" line="25" nameId="pHIW"/>
+                                            </NameExpr>
+                                            <NameExpr col="27" id="202" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="25">
+                                                <Name col="27" id="203" line="25" nameId="DrugpKa"/>
+                                            </NameExpr>
+                                        </MinusExpr>
+                                    </MPowExpr>
+                                </PlusExpr>
+                            </AssignStmt>
+                            <AssignStmt col="5" id="204" line="26" outputSuppressed="true">
+                                <NameExpr col="5" id="205" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="26">
+                                    <Name col="5" id="206" line="26" nameId="facY"/>
+                                </NameExpr>
+                                <PlusExpr col="12" id="207" line="26">
+                                    <IntLiteralExpr col="12" id="208" line="26" value="1"/>
+                                    <MPowExpr col="16" id="209" line="26">
+                                        <IntLiteralExpr col="16" id="210" line="26" value="10"/>
+                                        <MinusExpr col="19" id="211" line="26">
+                                            <NameExpr col="20" id="212" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="26">
+                                                <Name col="20" id="213" line="26" nameId="pHP"/>
+                                            </NameExpr>
+                                            <NameExpr col="26" id="214" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="26">
+                                                <Name col="26" id="215" line="26" nameId="DrugpKa"/>
+                                            </NameExpr>
+                                        </MinusExpr>
+                                    </MPowExpr>
+                                </PlusExpr>
+                            </AssignStmt>
+                        </StmtList>
+                    </IfBlock>
+                    <IfBlock col="1" id="216" line="27">
+                        <ShortCircuitAndExpr col="8" id="217" line="27">
+                            <NameExpr col="8" id="218" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="27">
+                                <Name col="8" id="219" line="27" nameId="DrugIsBase"/>
+                            </NameExpr>
+                            <NotExpr col="22" id="220" line="27">
+                                <NameExpr col="23" id="221" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="27">
+                                    <Name col="23" id="222" line="27" nameId="DrugIsAcid"/>
+                                </NameExpr>
+                            </NotExpr>
+                        </ShortCircuitAndExpr>
+                        <StmtList>
+                            <AssignStmt col="5" id="223" line="28" outputSuppressed="true">
+                                <NameExpr col="5" id="224" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="28">
+                                    <Name col="5" id="225" line="28" nameId="facX"/>
+                                </NameExpr>
+                                <PlusExpr col="12" id="226" line="28">
+                                    <IntLiteralExpr col="12" id="227" line="28" value="1"/>
+                                    <MPowExpr col="16" id="228" line="28">
+                                        <IntLiteralExpr col="16" id="229" line="28" value="10"/>
+                                        <MinusExpr col="19" id="230" line="28">
+                                            <NameExpr col="20" id="231" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="28">
+                                                <Name col="20" id="232" line="28" nameId="DrugpKa"/>
+                                            </NameExpr>
+                                            <NameExpr col="30" id="233" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="28">
+                                                <Name col="30" id="234" line="28" nameId="pHIW"/>
+                                            </NameExpr>
+                                        </MinusExpr>
+                                    </MPowExpr>
+                                </PlusExpr>
+                            </AssignStmt>
+                            <AssignStmt col="5" id="235" line="29" outputSuppressed="true">
+                                <NameExpr col="5" id="236" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="29">
+                                    <Name col="5" id="237" line="29" nameId="facY"/>
+                                </NameExpr>
+                                <PlusExpr col="12" id="238" line="29">
+                                    <IntLiteralExpr col="12" id="239" line="29" value="1"/>
+                                    <MPowExpr col="16" id="240" line="29">
+                                        <IntLiteralExpr col="16" id="241" line="29" value="10"/>
+                                        <MinusExpr col="19" id="242" line="29">
+                                            <NameExpr col="20" id="243" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="29">
+                                                <Name col="20" id="244" line="29" nameId="DrugpKa"/>
+                                            </NameExpr>
+                                            <NameExpr col="30" id="245" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="29">
+                                                <Name col="30" id="246" line="29" nameId="pHP"/>
+                                            </NameExpr>
+                                        </MinusExpr>
+                                    </MPowExpr>
+                                </PlusExpr>
+                            </AssignStmt>
+                        </StmtList>
+                    </IfBlock>
+                </IfStmt>
+                <IfStmt col="1" id="247" line="32">
+                    <IfBlock col="1" id="248" line="32">
+                        <ShortCircuitAndExpr col="4" id="249" line="32">
+                            <ShortCircuitAndExpr col="4" id="250" line="32">
+                                <NameExpr col="4" id="251" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="32">
+                                    <Name col="4" id="252" line="32" nameId="DrugIsBase"/>
+                                </NameExpr>
+                                <NameExpr col="18" id="253" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="32">
+                                    <Name col="18" id="254" line="32" nameId="DrugIsAcid"/>
+                                </NameExpr>
+                            </ShortCircuitAndExpr>
+                            <GEExpr col="32" id="255" line="32">
+                                <NameExpr col="32" id="256" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="32">
+                                    <Name col="32" id="257" line="32" nameId="DrugpKa"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="43" id="258" line="32" value="7"/>
+                            </GEExpr>
+                        </ShortCircuitAndExpr>
+                        <StmtList>
+                            <AssignStmt col="5" id="259" line="34" outputSuppressed="true">
+                                <NameExpr col="5" id="260" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="34">
+                                    <Name col="5" id="261" line="34" nameId="TissuePartitionCoefficient"/>
+                                </NameExpr>
+                                <PlusExpr col="34" id="262" line="34">
+                                    <PlusExpr col="34" id="263" line="34">
+                                        <PlusExpr col="34" id="264" line="34">
+                                            <NameExpr col="34" id="265" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="34">
+                                                <Name col="34" id="266" line="34" nameId="fracEW"/>
+                                            </NameExpr>
+                                            <MDivExpr col="43" id="267" line="34">
+                                                <MTimesExpr col="44" id="268" line="34">
+                                                    <NameExpr col="45" id="269" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="34">
+                                                        <Name col="45" id="270" line="34" nameId="facX"/>
+                                                    </NameExpr>
+                                                    <NameExpr col="52" id="271" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="34">
+                                                        <Name col="52" id="272" line="34" nameId="fracIW"/>
+                                                    </NameExpr>
+                                                </MTimesExpr>
+                                                <NameExpr col="60" id="273" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="34">
+                                                    <Name col="61" id="274" line="34" nameId="facY"/>
+                                                </NameExpr>
+                                            </MDivExpr>
+                                        </PlusExpr>
+                                        <MDivExpr col="36" id="275" line="35">
+                                            <PlusExpr col="36" id="276" line="35">
+                                                <MTimesExpr col="37" id="277" line="35">
+                                                    <NameExpr col="37" id="278" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="35">
+                                                        <Name col="37" id="279" line="35" nameId="DrugP"/>
+                                                    </NameExpr>
+                                                    <NameExpr col="45" id="280" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="35">
+                                                        <Name col="45" id="281" line="35" nameId="fracNL"/>
+                                                    </NameExpr>
+                                                </MTimesExpr>
+                                                <MTimesExpr col="54" id="282" line="35">
+                                                    <PlusExpr col="54" id="283" line="35">
+                                                        <PlusExpr col="55" id="284" line="35">
+                                                            <FPLiteralExpr col="55" id="285" line="35" value="0.3"/>
+                                                            <NameExpr col="61" id="286" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="35">
+                                                                <Name col="61" id="287" line="35" nameId="DrugP"/>
+                                                            </NameExpr>
+                                                        </PlusExpr>
+                                                        <FPLiteralExpr col="69" id="288" line="35" value="0.7"/>
+                                                    </PlusExpr>
+                                                    <NameExpr col="76" id="289" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="35">
+                                                        <Name col="76" id="290" line="35" nameId="fracNP"/>
+                                                    </NameExpr>
+                                                </MTimesExpr>
+                                            </PlusExpr>
+                                            <NameExpr col="84" id="291" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="35">
+                                                <Name col="84" id="292" line="35" nameId="facY"/>
+                                            </NameExpr>
+                                        </MDivExpr>
+                                    </PlusExpr>
+                                    <MDivExpr col="36" id="293" line="36">
+                                        <PlusExpr col="36" id="294" line="36">
+                                            <MTimesExpr col="37" id="295" line="36">
+                                                <MTimesExpr col="37" id="296" line="36">
+                                                    <NameExpr col="37" id="297" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="36">
+                                                        <Name col="37" id="298" line="36" nameId="KaBC"/>
+                                                    </NameExpr>
+                                                    <NameExpr col="44" id="299" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="36">
+                                                        <Name col="44" id="300" line="36" nameId="CAcidicPhospholipidsT"/>
+                                                    </NameExpr>
+                                                </MTimesExpr>
+                                                <MPowExpr col="68" id="301" line="36">
+                                                    <IntLiteralExpr col="68" id="302" line="36" value="10"/>
+                                                    <MinusExpr col="71" id="303" line="36">
+                                                        <MinusExpr col="72" id="304" line="36">
+                                                            <IntLiteralExpr col="72" id="305" line="36" value="14"/>
+                                                            <NameExpr col="75" id="306" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="36">
+                                                                <Name col="75" id="307" line="36" nameId="DrugpKb"/>
+                                                            </NameExpr>
+                                                        </MinusExpr>
+                                                        <NameExpr col="84" id="308" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="36">
+                                                            <Name col="84" id="309" line="36" nameId="pHIW"/>
+                                                        </NameExpr>
+                                                    </MinusExpr>
+                                                </MPowExpr>
+                                            </MTimesExpr>
+                                            <MPowExpr col="92" id="310" line="36">
+                                                <IntLiteralExpr col="92" id="311" line="36" value="10"/>
+                                                <MinusExpr col="95" id="312" line="36">
+                                                    <NameExpr col="96" id="313" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="36">
+                                                        <Name col="96" id="314" line="36" nameId="pHIW"/>
+                                                    </NameExpr>
+                                                    <NameExpr col="103" id="315" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="36">
+                                                        <Name col="103" id="316" line="36" nameId="DrugpKa"/>
+                                                    </NameExpr>
+                                                </MinusExpr>
+                                            </MPowExpr>
+                                        </PlusExpr>
+                                        <NameExpr col="113" id="317" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="36">
+                                            <Name col="113" id="318" line="36" nameId="facY"/>
+                                        </NameExpr>
+                                    </MDivExpr>
+                                </PlusExpr>
+                            </AssignStmt>
+                        </StmtList>
+                    </IfBlock>
+                    <IfBlock col="1" id="319" line="38">
+                        <ShortCircuitAndExpr col="8" id="320" line="38">
+                            <NameExpr col="8" id="321" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="38">
+                                <Name col="8" id="322" line="38" nameId="DrugIsBase"/>
+                            </NameExpr>
+                            <GEExpr col="22" id="323" line="38">
+                                <NameExpr col="22" id="324" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="38">
+                                    <Name col="22" id="325" line="38" nameId="DrugpKa"/>
+                                </NameExpr>
+                                <IntLiteralExpr col="32" id="326" line="38" value="7"/>
+                            </GEExpr>
+                        </ShortCircuitAndExpr>
+                        <StmtList>
+                            <AssignStmt col="5" id="327" line="40" outputSuppressed="true">
+                                <NameExpr col="5" id="328" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="40">
+                                    <Name col="5" id="329" line="40" nameId="TissuePartitionCoefficient"/>
+                                </NameExpr>
+                                <PlusExpr col="34" id="330" line="40">
+                                    <PlusExpr col="34" id="331" line="40">
+                                        <PlusExpr col="34" id="332" line="40">
+                                            <NameExpr col="34" id="333" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="40">
+                                                <Name col="34" id="334" line="40" nameId="fracEW"/>
+                                            </NameExpr>
+                                            <MTimesExpr col="43" id="335" line="40">
+                                                <MDivExpr col="44" id="336" line="40">
+                                                    <NameExpr col="44" id="337" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="40">
+                                                        <Name col="44" id="338" line="40" nameId="facX"/>
+                                                    </NameExpr>
+                                                    <NameExpr col="49" id="339" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="40">
+                                                        <Name col="49" id="340" line="40" nameId="facY"/>
+                                                    </NameExpr>
+                                                </MDivExpr>
+                                                <NameExpr col="56" id="341" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="40">
+                                                    <Name col="56" id="342" line="40" nameId="fracIW"/>
+                                                </NameExpr>
+                                            </MTimesExpr>
+                                        </PlusExpr>
+                                        <MDivExpr col="43" id="343" line="41">
+                                            <MTimesExpr col="44" id="344" line="41">
+                                                <MTimesExpr col="45" id="345" line="41">
+                                                    <NameExpr col="45" id="346" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="41">
+                                                        <Name col="45" id="347" line="41" nameId="KaBC"/>
+                                                    </NameExpr>
+                                                    <NameExpr col="52" id="348" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="41">
+                                                        <Name col="52" id="349" line="41" nameId="CAcidicPhospholipidsT"/>
+                                                    </NameExpr>
+                                                </MTimesExpr>
+                                                <MPowExpr col="76" id="350" line="41">
+                                                    <IntLiteralExpr col="76" id="351" line="41" value="10"/>
+                                                    <MinusExpr col="79" id="352" line="41">
+                                                        <NameExpr col="80" id="353" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="41">
+                                                            <Name col="80" id="354" line="41" nameId="DrugpKa"/>
+                                                        </NameExpr>
+                                                        <NameExpr col="90" id="355" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="41">
+                                                            <Name col="90" id="356" line="41" nameId="pHIW"/>
+                                                        </NameExpr>
+                                                    </MinusExpr>
+                                                </MPowExpr>
+                                            </MTimesExpr>
+                                            <NameExpr col="97" id="357" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="41">
+                                                <Name col="97" id="358" line="41" nameId="facY"/>
+                                            </NameExpr>
+                                        </MDivExpr>
+                                    </PlusExpr>
+                                    <MDivExpr col="43" id="359" line="42">
+                                        <PlusExpr col="44" id="360" line="42">
+                                            <MTimesExpr col="45" id="361" line="42">
+                                                <NameExpr col="45" id="362" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="42">
+                                                    <Name col="45" id="363" line="42" nameId="DrugP"/>
+                                                </NameExpr>
+                                                <NameExpr col="53" id="364" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="42">
+                                                    <Name col="53" id="365" line="42" nameId="fracNL"/>
+                                                </NameExpr>
+                                            </MTimesExpr>
+                                            <MTimesExpr col="62" id="366" line="42">
+                                                <PlusExpr col="63" id="367" line="42">
+                                                    <MTimesExpr col="64" id="368" line="42">
+                                                        <FPLiteralExpr col="64" id="369" line="42" value="0.3"/>
+                                                        <NameExpr col="68" id="370" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="42">
+                                                            <Name col="68" id="371" line="42" nameId="DrugP"/>
+                                                        </NameExpr>
+                                                    </MTimesExpr>
+                                                    <FPLiteralExpr col="76" id="372" line="42" value="0.7"/>
+                                                </PlusExpr>
+                                                <NameExpr col="83" id="373" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="42">
+                                                    <Name col="83" id="374" line="42" nameId="fracNP"/>
+                                                </NameExpr>
+                                            </MTimesExpr>
+                                        </PlusExpr>
+                                        <NameExpr col="92" id="375" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="42">
+                                            <Name col="92" id="376" line="42" nameId="facY"/>
+                                        </NameExpr>
+                                    </MDivExpr>
+                                </PlusExpr>
+                            </AssignStmt>
+                        </StmtList>
+                    </IfBlock>
+                    <IfBlock col="1" id="377" line="44">
+                        <ShortCircuitOrExpr col="8" id="378" line="44">
+                            <ShortCircuitOrExpr col="8" id="379" line="44">
+                                <NameExpr col="9" id="380" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="44">
+                                    <Name col="9" id="381" line="44" nameId="DrugIsNeutral"/>
+                                </NameExpr>
+                                <NameExpr col="26" id="382" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="44">
+                                    <Name col="26" id="383" line="44" nameId="DrugIsAcid"/>
+                                </NameExpr>
+                            </ShortCircuitOrExpr>
+                            <ShortCircuitAndExpr col="41" id="384" line="44">
+                                <NameExpr col="42" id="385" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="44">
+                                    <Name col="42" id="386" line="44" nameId="DrugIsBase"/>
+                                </NameExpr>
+                                <LTExpr col="56" id="387" line="44">
+                                    <NameExpr col="56" id="388" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="44">
+                                        <Name col="56" id="389" line="44" nameId="DrugpKa"/>
+                                    </NameExpr>
+                                    <IntLiteralExpr col="66" id="390" line="44" value="7"/>
+                                </LTExpr>
+                            </ShortCircuitAndExpr>
+                        </ShortCircuitOrExpr>
+                        <StmtList>
+                            <AssignStmt col="5" id="391" line="46" outputSuppressed="true">
+                                <NameExpr col="5" id="392" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="46">
+                                    <Name col="5" id="393" line="46" nameId="TissuePartitionCoefficient"/>
+                                </NameExpr>
+                                <PlusExpr col="34" id="394" line="46">
+                                    <PlusExpr col="34" id="395" line="46">
+                                        <PlusExpr col="34" id="396" line="46">
+                                            <NameExpr col="34" id="397" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="46">
+                                                <Name col="34" id="398" line="46" nameId="fracEW"/>
+                                            </NameExpr>
+                                            <MTimesExpr col="43" id="399" line="46">
+                                                <MDivExpr col="44" id="400" line="46">
+                                                    <NameExpr col="44" id="401" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="46">
+                                                        <Name col="44" id="402" line="46" nameId="facX"/>
+                                                    </NameExpr>
+                                                    <NameExpr col="49" id="403" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="46">
+                                                        <Name col="49" id="404" line="46" nameId="facY"/>
+                                                    </NameExpr>
+                                                </MDivExpr>
+                                                <NameExpr col="56" id="405" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="46">
+                                                    <Name col="56" id="406" line="46" nameId="fracIW"/>
+                                                </NameExpr>
+                                            </MTimesExpr>
+                                        </PlusExpr>
+                                        <MDivExpr col="66" id="407" line="46">
+                                            <PlusExpr col="66" id="408" line="46">
+                                                <MTimesExpr col="67" id="409" line="46">
+                                                    <NameExpr col="67" id="410" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="46">
+                                                        <Name col="67" id="411" line="46" nameId="DrugP"/>
+                                                    </NameExpr>
+                                                    <NameExpr col="75" id="412" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="46">
+                                                        <Name col="75" id="413" line="46" nameId="fracNL"/>
+                                                    </NameExpr>
+                                                </MTimesExpr>
+                                                <MTimesExpr col="84" id="414" line="46">
+                                                    <PlusExpr col="84" id="415" line="46">
+                                                        <MTimesExpr col="85" id="416" line="46">
+                                                            <FPLiteralExpr col="85" id="417" line="46" value="0.3"/>
+                                                            <NameExpr col="89" id="418" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="46">
+                                                                <Name col="89" id="419" line="46" nameId="DrugP"/>
+                                                            </NameExpr>
+                                                        </MTimesExpr>
+                                                        <FPLiteralExpr col="97" id="420" line="46" value="0.7"/>
+                                                    </PlusExpr>
+                                                    <NameExpr col="104" id="421" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="46">
+                                                        <Name col="104" id="422" line="46" nameId="fracNP"/>
+                                                    </NameExpr>
+                                                </MTimesExpr>
+                                            </PlusExpr>
+                                            <NameExpr col="112" id="423" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="46">
+                                                <Name col="112" id="424" line="46" nameId="facY"/>
+                                            </NameExpr>
+                                        </MDivExpr>
+                                    </PlusExpr>
+                                    <MTimesExpr col="36" id="425" line="47">
+                                        <MinusExpr col="36" id="426" line="47">
+                                            <MinusExpr col="38" id="427" line="47">
+                                                <MDivExpr col="38" id="428" line="47">
+                                                    <IntLiteralExpr col="38" id="429" line="47" value="1"/>
+                                                    <NameExpr col="40" id="430" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="47">
+                                                        <Name col="40" id="431" line="47" nameId="DrugFractionUnbound"/>
+                                                    </NameExpr>
+                                                </MDivExpr>
+                                                <IntLiteralExpr col="62" id="432" line="47" value="1"/>
+                                            </MinusExpr>
+                                            <MDivExpr col="66" id="433" line="47">
+                                                <PlusExpr col="67" id="434" line="47">
+                                                    <MTimesExpr col="68" id="435" line="47">
+                                                        <NameExpr col="68" id="436" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="47">
+                                                            <Name col="68" id="437" line="47" nameId="DrugP"/>
+                                                        </NameExpr>
+                                                        <NameExpr col="76" id="438" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="47">
+                                                            <Name col="76" id="439" line="47" nameId="fracNLP"/>
+                                                        </NameExpr>
+                                                    </MTimesExpr>
+                                                    <MTimesExpr col="86" id="440" line="47">
+                                                        <PlusExpr col="86" id="441" line="47">
+                                                            <MTimesExpr col="87" id="442" line="47">
+                                                                <FPLiteralExpr col="87" id="443" line="47" value="0.3"/>
+                                                                <NameExpr col="91" id="444" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="47">
+                                                                    <Name col="91" id="445" line="47" nameId="DrugP"/>
+                                                                </NameExpr>
+                                                            </MTimesExpr>
+                                                            <FPLiteralExpr col="99" id="446" line="47" value="0.7"/>
+                                                        </PlusExpr>
+                                                        <NameExpr col="106" id="447" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="47">
+                                                            <Name col="106" id="448" line="47" nameId="fracNPP"/>
+                                                        </NameExpr>
+                                                    </MTimesExpr>
+                                                </PlusExpr>
+                                                <NameExpr col="115" id="449" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="47">
+                                                    <Name col="115" id="450" line="47" nameId="facY"/>
+                                                </NameExpr>
+                                            </MDivExpr>
+                                        </MinusExpr>
+                                        <NameExpr col="125" id="451" kind="VAR" kind_insensitive="VAR" kind_sensitive="VAR" line="47">
+                                            <Name col="125" id="452" line="47" nameId="TissuetoPlasmaProteinRatio"/>
+                                        </NameExpr>
+                                    </MTimesExpr>
+                                </PlusExpr>
+                            </AssignStmt>
+                        </StmtList>
+                    </IfBlock>
+                </IfStmt>
+            </StmtList>
+        </Function>
+    </FunctionList>
+</CompilationUnits>

@@ -1,0 +1,12 @@
+a=[1 9 5 7 2 16]
+min_a=min(a)
+max_a=max(a)
+mean_a=mean(a)
+median_a=median(a)
+std_a=std(a)
+sum_a=sum(a)
+prod_a=prod(a)
+cumsum_a=cumsum(a)
+cumprod_a=cumprod(a)
+sort_a=sort(a)
+[sort_a,i]=sort(a)

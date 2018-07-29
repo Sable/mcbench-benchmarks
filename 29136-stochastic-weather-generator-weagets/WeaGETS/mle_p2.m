@@ -1,0 +1,9 @@
+function [U] = mle_p2(X,phi,a1,a2,n,T);
+%
+%
+% this function calculates the maximum likelihood function U (U0 or U1)
+% with 2 Fourier harmonic
+%
+b=phi(1)+phi(2)*sin(n/T+phi(3))+X(1)*sin(2*n/T+X(2));
+U=sum(a1.*log(b)+a2.*log(1-b));
+U=-U;  % to minimize function

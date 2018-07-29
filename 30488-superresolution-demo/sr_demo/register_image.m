@@ -1,0 +1,13 @@
+function [im2_reg,sh,f]=register_image(im1,im2)
+oim2=im2;
+w=gen_window(size(im1),0.05,0.05);
+im1=w.*im1; % mitigate boundary effect
+im2=w.*im2;
+im1=im1/mean(im1(:));
+im2=im2/mean(im2(:));
+tmp=fft2(im1).*fft2(flipud(fliplr(im2)));
+f=fftshift(abs(ifft2(tmp)));
+[dummy,shid]=max(f(:));
+sh(1)=(mod(shid-1,size(im1,1))+1)-size(im1,1)/2;
+sh(2)=ceil((shid-1)/size(im1,1))-size(im1,2)/2;
+im2_reg=shift_image(oim2,sh);
